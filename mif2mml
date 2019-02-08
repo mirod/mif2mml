@@ -43,7 +43,7 @@ my %ent=
       Upsilon   => 'Υ', varphi    => 'φ', varpi     => 'π', varsigma  => 'ς', vartheta  => 'θ', wp        => '℘',
       xi        => 'ξ', Xi        => 'Ξ', zeta      => 'ζ',
       # p 186-189 of the MIF reference Manual
-      leq       => '≤', geq       => '≥', lessthan  => '&lt;', notequal  => '≠', greaterthan => '&gt;',
+      leq       => '≤', geq       => '≥', lessthan  => '<', notequal  => '≠', greaterthan => '>',
       infty     => '∞', rarr      => '→', caret     =>'‸', tprime    => '‴', rabracket => '›', labracket => '‹',
       tie       => '⁀', overline  => '‾', dagger    => '†', geq       => '≥', leq       => '≤', sum       => '∑',
       int       => '∫', dot       => '⋅', twodots   => '‥', ellip     => '…', box       => '□', angle     => '∠',
@@ -190,8 +190,8 @@ my %post_op= ( fact => '!', );
 # these nodes are displayed as the list of contents, separated by an operator
 # data is <name> => <operator>
 my %nary=( approx => '≈', cap => '∩', cdot => '⋅', comma => ',', cong => '≅', cup => '∪', equal => '=',
-           equiv => '≡', geq => '≥', gg => '»',  greaterthan => '&gt;', in => '∈',  jotdot => '◊', 
-           leftarrow => '←', Leftarrow => '⇐', leq => '≤', lessthan => '&lt;', ll => '«',
+           equiv => '≡', geq => '≥', gg => '»',  greaterthan => '>', in => '∈',  jotdot => '◊', 
+           leftarrow => '←', Leftarrow => '⇐', leq => '≤', lessthan => '<', ll => '«',
            lrarrow => '↔', LRarrow => '⇔', ni => '∋', notequal => '≠', notin => '∉', notsubset => '⊄',
            oplus => '⊕', otimes => '⊗', parallel => '||', perp => '⊥', propto => '∝', rightarrow => '→',
            Rightarrow => '⇒', sim => '∼', subset => '⊂', subseteq => '⊆', supset => '⊃', supseteq => '⊇',
@@ -274,7 +274,7 @@ sub moi { return tag( mo => { mathvariant => 'italic' }, @_); }
 sub mrows { return [ map { mrow( $_) } @_ ]; }
 
 BEGIN 
-  { foreach my $elt (qw( mo mi mn mtext msup msub mfrac mover munder msqrt mroot mtable mtr mtd mmultiscripts))
+  { foreach my $elt (qw( mo mi mn mtext msup msub mfrac mover munder msqrt mroot mspace mtable mtr mtd mmultiscripts))
       {  no strict 'refs';
         *{$elt}= sub { tag( $elt => @_); };
       }
@@ -459,7 +459,7 @@ sub matrix
     foreach (1..$rows) 
       { push @rows, mtr( map { mtd( $_) } splice( @_, 0, $columns)); }
     my $matrix= mtable( @rows);
-    if( $format->{i} != 1) { $matrix= mfenced( [ '[',']' ], $matrix); }
+    if( $format->{i} != 1) { $matrix= mfenced( { sep => [ '[',']' ] }, $matrix); }
     return $matrix;
   }
 
@@ -560,7 +560,7 @@ sub apply_format
     my $m_to_pt= 65536;
 
     # formats that apply to the single element that's being passed 
-    if( my $yoffset = $format->{y})  { $e[0]= apply_yoffset( $yoffset, $e[0]);    }
+    if( my $yoffset = $format->{y})  { $e[0]= apply_yoffset( int($yoffset/$m_to_pt), $e[0]);    }
     if( exists $format->{C})         { if( $format->{C}) { uc_content( @e); }  
                                        else              { lc_content( @e); }
                                      } 
@@ -634,9 +634,9 @@ sub math_variant
 sub apply_yoffset
   { my( $yoffset, $e)= @_;
     if( $yoffset > 0)
-      { return mrow( msub( vspace( $yoffset), $e)); }
+      { return mrow( mspace( { height => int($yoffset) } ), $e); }
     else
-      { return mrow( msup( vspace( -$yoffset), $e)); }
+      { return mrow( mspace( { depth => int(-$yoffset) } ), $e); }
   }
 
 sub uc_content
