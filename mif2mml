@@ -20,7 +20,8 @@ my $DPI= 300; # dpi for the png output
 sub svg2png  { my $file= shift; (inkscape => '-e' => filename( png => $file), '-d' => $DPI,  filename( svg => $file)) }
 
 # choose the tool you are using to generate the SVG
-sub mml2svg { my $file= shift; (python => '/usr/local/src/svgmath/math2svg.py' => '-s', '-o' =>  filename( svg => $file), filename( mml => $file)) }
+
+sub mml2svg { my $file= shift; (python => '/home/mrodrigu/standards/app/svgmath/math2svg.py' => '-s', '-o' =>  filename( svg => $file), filename( mml => $file)) }
 #sub mml2svg  { my $file= shift; (mathmlsvg => filename( mml => $file)) }
 
 my $grammar=<<'G';
@@ -58,7 +59,7 @@ my %symbol=
 # to replace escaped characters in strings or chars
 my %frame_escape=
     ( t      => "\t", '>' => '>', q => "'", Q => '`', '\\' => '\\', # p 7 of the MIF reference Manual
-      'xd0 ' => '–',                                              # found this in an equation, don't know why d0 is a dash
+      'xd0 ' => '–',                                                # found this in an equation, don't know why d0 is a dash
     );
 
 # that's what the MIF reference calls "formatting codes"
@@ -129,6 +130,9 @@ my %special=
                            { mtable( { columnalign => 'left' }, map { mtr( mtd( $_)) } @_); }
                        },
     # prompt => sub { mo( '⋮'); }, # prompt seems to be a single char: ⋮
+    # HACK: newfunction[(*T"FrameMath1"T*) is used to generate a '*' between 2 factors (regular times does not generate any character)
+    # it is used as a kind of unary operator on the second part of the expression
+    newfunction => sub { return '<mo>*</mo>' . shift; },
 
   );
 
@@ -588,7 +592,7 @@ char    : /(char|dummy)/ '[' format(?) tchar  ']'     { $format= $item{format} ?
 ident   : /\w+/             { $return= $item[1]; 1; }
 tnum    : /[+-]?\d+\.\d+/   { $return= $item[1]; 1; }
 tchar   : /[^\]]*/          { $return= single_char( $item[1]); 1; }
-ind     : /\d+/             { $return= $item[1]; 1; } # a simple number, used for indices, matrix dimentions...
+ind     : /\d+/             { $return= $item[1]; 1; } # a simple number, used for indices, matrix dimensions...
 format  : '(*' /[^*]*/ '*)' { $return= $item[2]; 1; }
 tstring : <skip:"">/[^"]*/<skip:$item[1]>           { $return= $item[2]; 1; } # need to change skip so we don't skip over whitespaces
 G
@@ -604,7 +608,6 @@ foreach my $file (@ARGV)
     if( !$opt{n})
       { my $mif= slurp( $file);
         $mif= clean_up_mif( $mif);
-        warn "mif: $mif\n" if $opt{v};
         if( ! $mif) 
           { if( $opt{v}) { warn "$file not an equation, skipping.\n"; }
             next;
@@ -752,7 +755,7 @@ __END__
      those 2 packages are hell to install and configure, especially to get
      the fonts right
 
-  - inkscape for PNG generation (from the SVG, so you also need math2svg)
+  - inkscape for PNG generation (from the SVG, so you also need gtkmathview or math2svg)
 
 
 =head1 SEE ALSO
