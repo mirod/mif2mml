@@ -3,31 +3,30 @@
 use strict;
 use warnings;
 
-use utf8; # lots of funky chars in here
+use utf8::all; # lots of funky chars in here
 
 use Getopt::Std;
 
-my %opt;
-getopts( 'nspvceC:', \%opt);
+our %opt;
+getopts( 'nspvceC:Di:', \%opt);
 
 if( $opt{p}) { $opt{s}=1; }
 
-use XML::Twig;
-use Parse::RecDescent;
+#use XML::Twig;
+import ptwig;
+import pelt;
 
+use Parse::RecDescent;
+#$::RD_HINT=1;
+$::RD_ERRORS = 1;
+#$::RD_TRACE = 1;
 use Unicode::UCD qw(charinfo);
 
-my $DPI= 300; # dpi for the png output
-
-sub svg2png  { my $file= shift; (inkscape => '-e' => filename( png => $file), '-d' => $DPI,  filename( svg => $file)) }
-
-# choose the tool you are using to generate the SVG
-sub mml2svg { my $file= shift; (python => '/usr/local/src/svgmath/math2svg.py' => '-s', '-o' =>  filename( svg => $file), filename( mml => $file)) }
-#sub mml2svg  { my $file= shift; (mathmlsvg => filename( mml => $file)) }
 
 # empirically found list of formats found in mif prompt[] with the corresponding character
 # s10.00s generating '⋮' makes absolutley no sense, s normaly specifies the size of the character
 # see https://help.adobe.com/en_US/framemaker/mifreference/mifref.pdf p 203
+# I am probably missing something there...
 my %prompt= ( '(*s10.00s*)' => '⋮');
 
 my $grammar=<<'G';
@@ -52,7 +51,8 @@ my %ent=
       neg       => '¬', therefore => '∴',
       topcurly  => '︷', bottomcurly => '︸', 
     );
-      
+
+my %is_ent= map { $_ => 1 } values %ent;      
 
 # to replace characters in the symbol font by the real character - from http://www.alanwood.net/demos/symbol.html
 # I have only included greek characters, as they are the only ones I have seen used
@@ -67,10 +67,6 @@ my %frame_escape=
     ( t      => "\t", '>' => '>', q => "'", Q => '`', '\\' => '\\', # p 7 of the MIF reference Manual
       'xd0 ' => '–',                                                # found this in an equation, don't know why d0 is a dash
     );
-
-# that's what the MIF reference calls "formatting codes"
-my $format={};  # last found format, global because it is quite cumbersome to pass it around even though most of the time it is not needed
-                # format is a hashref { <code_letter> => <value>, ... } for all formats found in the node
 
 # nodes (operators in the MIF Reference)
 
@@ -91,25 +87,37 @@ my %special=
     lap         => sub { mrow( msup( mi($ent{nabla}), mi(2)), @_); },
     overline    => sub { mover( shift(), mo( $ent{overline})); },
     upbrace     => sub { munder( mrow( $_[0]), mo( $ent{bottomcurly})); },
-    acmut       => sub { mfenced( [ '{', '}', ','], @_); },
-    bket        => sub { mfenced( [ '〈', '〉', '|'], @_); },
-    cmut        => sub { mfenced( [ '[', ']', ','], @_); },
+    acmut       => sub { mfenced( { sep => [ '{', '}', ','] }, @_); },
+    bket        => sub { mfenced( { sep => [ '〈', '〉', '|'] }, @_); },
+    cmut        => sub { mfenced( { sep => [ '[', ']', ','] }, @_); },
     inprod      => sub { mfenced( @_); },
     choice      => sub { mfenced( mfrac( { linethickness => 0 }, @_)); },
-    function    => sub { mrow( shift() . mfenced( @_)); },
+    function    => sub { my $func= shift; 
+                         if( $func->from_in( qw(oppartial optotal)))
+                           { mrow( $func, mrow( @_)); }
+                         else
+                           { mrow( $func, mfenced( @_)); }
+                       },
     lim         => sub { munder( mrow( mo( 'lim'), shift()), mrow( shift)); },
     over        => sub { mfrac( mrows( @_));  },
     power       => sub { msup( mrows( @_));   },
-    sn          => sub { if( $format->{i} == 1) { op( 'E', @_); }
-                          else                 { mrow( shift() . mo( '×') , msup( mi(10), shift())); } 
+    sn          => sub { my $format= shift;
+                         if( $format->{i} == 1) { op( 'E', @_); }
+                         else                   { mrow( shift(), mo( '×') , msup( mi(10), shift())); } 
                        },
     plus        => sub { # if next mo is a -, the + is not used
-                         my $plus= op( '+',   @_);
-                         $plus=~ s{<mo>\+</mo>((<mrow>)*<mo>[±∓-]</mo>)}{$1}g; # frame oddity: a - is done by plus[minus{
-                         return $plus;
+                         my @children= shift( @_);
+                         foreach my $child (@_)
+                           { if( ! $child->from_in( qw(minus mp pm)) )
+                               { push @children, mo( '+'); }
+                              push @children, $child;
+                           }
+                         return mrow( @children);
                        },
     minus       => sub { u_or_n_nary( '-'      => @_); },
-    diff        => sub { warn "found n-ary diff\n"; my $op= $format->{n} ? '∂' : 'd'; opi( $op, @_); },
+    #diff        => sub { my $format= shift; my $op= $format->{n} ? '∂' : 'd'; opi( $op, @_); },
+    diff        => sub { mrow( moi( 'd'), @_); },
+    dagger      => sub { return msup( @_, mo( $ent{dagger})); },
     grad        => sub { if( @_ == 1) { pre_op( '∇', @_); }
                          else         { mrow( msub( mo('∇'), $_[1]), $_[0]); }
                        },
@@ -128,16 +136,16 @@ my %special=
                        },
     substitution => sub { if(    @_ == 1) { post_op( shift(), '|'); }
                           elsif( @_ == 2) { msub( mrow( shift(), mo( '|')), shift()); }
-                          else            { msubsup( shift() . mo( '|'), @_); }
+                          else            { msubsup( shift(), mo( '|'), @_); }
                         },
-    #list => sub { return mrow( join( '<mspace linebreak="newline" class="list"/>', @_)); },
-    list  => sub { return mrow( join( '', @_)); },
+    list  => sub { return mrow( @_); },
 
     # seems to be used instead of subsup: the expression, then atop for the sub and sup
     # so with 2 attributes we make it an mfrac, with more a 1-column matrix
     atop        => sub { #if( @_ == 2) 
                          #  { mfrac( { linethickness => 0 }, @_); }
                          #else
+                         my $format= shift;
                          my $align= exists $format->{j} &&  $format->{j} == 0 ? 'center'
                                   : $format->{j} == 1                         ? 'left'
                                   : $format->{j} == 2                         ? 'right'
@@ -160,7 +168,6 @@ my @lit= qw( acos acosh acot acoth acsc acsch arg asec asech asin atan atanh
 # the data is <name> => <prefix>
 my %pre_op= ( angle => '∠', box => '□', boxdot => '□⋅',
               change => '∆', curl => '∇⨉', 
-              diff => [ 'd', 'italic' ],
               diver => '∇⋅', exists => '∃', forall => '∀',
               mp => '∓', neg => '¬', partial => '∂', pm => '±', 
               semicolon => ';', therefore => '∴', ucomma => ',', uequal => '=',
@@ -178,7 +185,7 @@ my %wrap = ( abs   => [ '|', '|' ], bra    => [ '‹', '|' ],
 
 # these nodes are displayed as the content, followed by a suffix
 # the data is <name> => <suffix>
-my %post_op= ( dagger => $ent{dagger}, fact => '!', );
+my %post_op= ( fact => '!', );
 
 # these nodes are displayed as the list of contents, separated by an operator
 # data is <name> => <operator>
@@ -195,24 +202,19 @@ my %nary=( approx => '≈', cap => '∩', cdot => '⋅', comma => ',', cong => '
 
 my %large=( bigcap => '∩', bigcup => '∪', int => '∫', oint => '∫', prod => '∏', sum => '∑');
 
+# those nodes require the format, it will be passed as the first argument to the sub
+my %need_format= map { $_ => 1 } ( qw( atop id lparen matrix rparen sn ), keys %large);
 
 sub wrap
   { my( $open, $close, $exp)= @_;
     #warn "wrap: open: '$open' - close: '$close' - exp: '$exp'\nreturned: ",  mrow( mo( $open), $exp, mo( $close)), "\n";
-    return mfenced( [ $open, $close, ','], $exp); 
+    return mfenced( { sep => [ $open, $close, ','] }, $exp); 
     #return mrow( mo( $open), $exp, mo( $close)); 
   }
 
 sub pre_op
-  { my( $op, $exp)= @_;
-    warn "found pre_op $op\n";
-    if( ref $op)
-      { warn "found pre_op $op->[0]\n";
-        # format of op if it's a ref [ <text>, <mathvariant_value>]
-        return mrow( tag( mo => { mathvariant => $op->[1] }, $op->[0]), $exp);
-      }
-    else 
-      { return mrow( mo( $op), $exp); }
+  { my $op= shift;
+    return mrow( tag( mo => $op), @_);
   }
 
 sub post_op
@@ -227,7 +229,7 @@ sub init_node_dispatcher
     while( my( $node, $op) = each %pre_op)    { $dp->{$node}= sub { pre_op( $op, @_); };           }
     while( my( $node, $op) = each %post_op)   { $dp->{$node}= sub { post_op( $_[0], $op); };       }
     while( my( $node, $brackets) = each %wrap){ $dp->{$node}= sub { wrap( @$brackets, @_); };      }
-    while( my( $node, $op)= each %nary)       { $dp->{$node}= sub { op( $op, @_); };               }
+    while( my( $node, $op)= each %nary)       { $dp->{$node}= sub { return op( $op, @_); };    }
     while( my( $node, $symbol)= each %large)  { $dp->{$node}= sub { sum( $symbol => @_); };        }
     return $dp;
   }
@@ -236,14 +238,16 @@ sub init_node_dispatcher
 my $dp=init_node_dispatcher();
 
 sub lparen
-  { my @lparen=( '(', '[', '{');
+  { my $format= shift;
+    my @lparen=( '(', '[', '{');
     my( $paren_type)= $format->{i};
     $paren_type||=0;
     pre_op( $lparen[$paren_type], @_);
   }
 
 sub rparen
-  { my @rparen=( ')', ']', '}');
+  { my $format= shift;
+    my @rparen=( ')', ']', '}');
     my( $paren_type)= $format->{i};
     $paren_type||=0;
     post_op( @_, $rparen[$paren_type]);
@@ -251,67 +255,102 @@ sub rparen
 
 sub tag
   { my $tag= shift;
-    my $atts= $_[0] && ref( $_[0]) eq 'HASH' ? atts_string( %{shift()}) : '' ;
-    return join '', "<$tag$atts>", @_, "</$tag>"; 
+    my $atts= $_[0] && ref( $_[0]) && ref( $_[0]) eq 'HASH' ? shift : {} ;
+
+    # if next arg is an arrayref expand it, add to args
+    if( @_)
+      { return pelt->new( $tag => $atts, flatten( @_)); }
+    else
+      { return pelt->new( $tag => $atts)->set_empty( 1); }
+    #return join '', "<$tag$atts>", @_, "</$tag>"; 
   } 
 
-sub atts_string
-  { my %att= @_;
-    my $atts= '';
-    foreach my $att (sort keys %att)
-      { $atts.= qq{ $att="} .escape_att_val( $att{$att}) . qq{"}; }
-    return $atts;
-  }
 
-sub escape_att_val
-  { my( $val)= @_;
-    $val=~ s{&}{&amp;}g;
-    $val=~ s{<}{&lt;}g;
-    $val=~ s{>}{&gt;}g;
-    $val=~ s{"}{&quote;}g;
-    return $val;
-  }
-
-sub escape_pcdata
-  { my( $pcdata)= @_;
-    $pcdata=~ s{&}{&amp;}g;
-    $pcdata=~ s{<}{&lt;}g;
-    $pcdata=~ s{>}{&gt;}g;
-    return $pcdata;
-  }
-
-
-sub op  { return mrow( join( mo( shift), @_)); }
-sub opi { return mrow( join( moi( shift), @_)); }
+sub op  { my $op= shift; return mrow(shift, map { (mo($op), $_) }  @_);  }
+sub opi { my $op= shift; return mrow(shift, map { (moi($op), $_) } @_); }
+sub moa { return tag( mo => { accent => 'true' }, @_); }
 sub moi { return tag( mo => { mathvariant => 'italic' }, @_); }
 
-sub mrows { map { mrow( $_) } @_; }
+sub mrows { return [ map { mrow( $_) } @_ ]; }
 
 BEGIN 
-  { foreach my $elt (qw( mo mi mn mtext mrow msup msub mfrac mover munder msqrt mroot mtable mtr mtd mmultiscripts))
+  { foreach my $elt (qw( mo mi mn mtext msup msub mfrac mover munder msqrt mroot mtable mtr mtd mmultiscripts))
       {  no strict 'refs';
         *{$elt}= sub { tag( $elt => @_); };
       }
   }
 
-sub none        { return '<none/>';        }
-sub mprescripts { return '<mprescripts/>'; }
-sub hspace      { return qq{<mspace width="$_[0]pt" />};  }
-sub vspace      { return qq{<mspace height="$_[0]pt" />}; }
+sub none        { return tag( 'none');        }
+sub mprescripts { return tag( 'mprescripts'); }
+sub hspace      { return tag( mspace => { width  => "$_[0]pt"});  }
+sub vspace      { return tag( mspace => { height => "$_[0]pt"}); }
+
+sub mrow
+  { my %atts;
+    my $mrow= tag( mrow => @_);
+    if( $mrow->has_no_atts && ($mrow->children()==1)  && $mrow->first_child->is( 'mrow|mn|mi'))
+      { return $mrow->first_child;
+      }
+    return $mrow;
+  }
+     
 
 sub mfenced
   { my %atts;
     my @att_names= qw(open close separators);
-    if( $_[0] && ref( $_[0]) eq 'ARRAY')
-      { @atts{@att_names}= @{shift()}; }
-    return tag( mfenced => \%atts, @_);
+    if( $_[0] && ref( $_[0]) eq 'HASH' && $_[0]->{sep})
+      { @atts{@att_names}= @{shift()->{sep}}; }
+   
+    my $tag= 'mfenced';
+    #warn "checking children\n";
+    foreach my $child (flatten( @_) )
+      { #warn "  child: ", $child->tag, " n: ", $child->format('n'), " child is ", $child->sprint, "\n"; 
+        if( UNIVERSAL::isa( $child, 'pelt') && $child->format( 'n')) 
+          { # warn "no fencing\n"; 
+            $tag='mrow'; 
+            %atts=(); 
+            last;
+          } 
+      }
+    return tag( $tag => \%atts, @_);
   }
+
+sub extract_separators_from_mfenced
+  { my( $mfenced)= @_;
+    my @children= $mfenced->children;
+    my @esep; # separators, to be deleted if they can be replaced by the separator attribute
+    my $sep;
+    while( @children)
+      { shift @children;                  # skip a child
+        if( my $esep= shift @children)    # next one should be a mi containing the separator
+          { if( $esep->tag ne 'mi') 
+              { return; }                 # failed, not a mi
+            if( ! defined $sep)
+              { $sep= $esep->text;        # first separator found, store it to see if they are all alike 
+                push @esep, $esep;        #  store the element so we can remove it later
+              }
+            else
+              { if( $esep->text ne $sep)
+                  { return; }             # failed: 2 different separators found
+                else
+                  {  push @esep, $esep; } # still good, store the element so we can remove it later
+              }
+          }
+      }
+    if( ! defined $sep) { return; } # no separator, just 1 element in mfenced
+
+    # if we get here, we have a success
+    $mfenced->set_att( separators => $sep);     # set attribute
+    foreach my $esep (@esep) { $esep->delete; } # remove elements
+  }
+
 
 sub msubsup    { return tag( msubsup => mrows(@_));    }
 sub munderover { return tag( munderover => mrows(@_)); }
 
 sub id
-  { my $bracket= { 2 => [ '{', '}' ],
+  { my $format= shift;
+    my $bracket= { 2 => [ '{', '}' ],
                    1 => [ '[', ']' ],
                  };
     my $atts= { separators => '' };
@@ -330,7 +369,7 @@ sub u_or_n_nary
   }
 
 sub sum
-  { my( $glyph, $content, $from, $to)= @_;
+  { my( $glyph, $format, $content, $from, $to)= @_;
     my $int;
     if( defined( $from) && defined( $to))
       { if( $format->{i} == 1) # todo : use attributes to position better
@@ -344,13 +383,13 @@ sub sum
       { if( $format->{i} == 1) # todo : use attributes to position better
           { $int= munder( mo( $glyph), mrow( $from)); } 
         elsif( $format->{i} ==  2) 
-          { $int= munder( mo( $glyph), mrow( $from)); } 
+          { $int= munder( { accent => 'true' }, mo( $glyph), mrow( $from)); } 
         else
           { $int= munder( mrow( mo( $glyph)), mrow( $from)); } 
       }
     else
       { $int= mo( $glyph); }
-    return mrow( $int . $content);
+    return mrow( $int, $content);
   }
 
 sub indexes
@@ -413,13 +452,14 @@ sub tensor
   }
 
 sub matrix
-  { my( $rows, $columns)= (shift, shift);
+  { my $format= shift;
+    my( $rows, $columns)= (shift, shift);
     #warn "in matrix ($rows, $columns)\n";
     my @rows;
     foreach (1..$rows) 
       { push @rows, mtr( map { mtd( $_) } splice( @_, 0, $columns)); }
     my $matrix= mtable( @rows);
-    if( $format->{i} == 1) { $matrix= mfenced( [ '[',']' ], $matrix); }
+    if( $format->{i} != 1) { $matrix= mfenced( [ '[',']' ], $matrix); }
     return $matrix;
   }
 
@@ -429,6 +469,7 @@ sub single_char
   { my ($item)= @_;
 
     my( $char, $decoration)= $item=~ m{^([^,]*)((?:,[0-4])*)$};
+    #warn "in tchar: item = [$item] (decoration is [$decoration]\n" if $decoration;
     
     my $ent; # true if the character is an entity
     if( length( $char) > 1 && $ent{$char})
@@ -436,13 +477,7 @@ sub single_char
         $char= $ent{$char};
       }
 
-
-    my $att= {};
-
-    #my $variant= variant( $ent, $format);
-    #if( $variant) { $att->{mathvariant}= $variant; }
-
-    my $mi= tag( mi => $att => $char);
+    my $mi= tag( mi => $char);
 
     if( $decoration) 
       { $decoration=~ s{^,}{};
@@ -451,39 +486,20 @@ sub single_char
       }
     else            
       { return $mi; }
-
-
-  }
-
-sub variant
-  { my( $ent, $format)= @_;
-   $format ||='';
-
-    my %variant; # hints about the font variant used
-    if( $ent)                      { $variant{normal}=1; }  # generally, special chars should not be italicized
-    if( $format->{B} eq 'Regular') { $variant{normal}=1; }  # frame format
-    if( $format->{W} eq 'Bold')    { $variant{bold}=1;   }  # B"Regular"B is bold
-
-    if( $variant{normal})
-      { if( $variant{bold}) { return 'bold';   }
-        else                { return 'normal'; }
-      }
-    if( $variant{bold})     { return 'bold-italic'; } # by defauld single chars are in italic
-
   }
 
 sub decoration
   { my( $vector, $prime, $dot, $bar, $underscore, $exp)= @_;
-    # for now several decorations on the same expression are not treated in a special way (no munderover for example)
-    if( $vector==1)     { $exp= mover( { accent => 'true' }, $exp, mo('⇀'));  }
-    if( $vector==2)     { $exp= mover( { accent => 'true' }, $exp, mo( '^')); }
-    if( $vector==3)     { $exp= mover( { accent => 'true' }, $exp, mo( '~')); }
-    if( $vector==4)     { $exp= mover( { accent => 'true' }, $exp, mo( '→')); }
-    if( $vector==5)     { $exp= mover( { accent => 'true' }, $exp, mo( '⁀')); }
-    if( $prime==1)      { $exp= mrow(  $exp, mo( $ent{prime}));    }
-    if( $prime==2)      { $exp= mrow(  $exp, mo( $ent{pprime}));   }
-    if( $prime==3)      { $exp= mrow(  $exp, mo( $ent{tprime}));   }
-    if( $dot==1)        { $exp= mover( $exp, mo( $ent{dot}));      } 
+    # for now several decorations on the same expression are not treated specialcased (no munderover for example)
+    if( $vector==1)     { $exp= mover( { accent => 'true' }, $exp, moa('⇀'));  }
+    if( $vector==2)     { $exp= mover( { accent => 'true' }, $exp, moa( '^')); }
+    if( $vector==3)     { $exp= mover( { accent => 'true' }, $exp, moa( '~')); }
+    if( $vector==4)     { $exp= mover( { accent => 'true' }, $exp, moa( '→')); }
+    if( $vector==5)     { $exp= mover( { accent => 'true' }, $exp, moa( '⁀')); }
+    if( $prime==1)      { $exp= mrow(  $exp, moa( $ent{prime}));    }
+    if( $prime==2)      { $exp= mrow(  $exp, moa( $ent{pprime}));   }
+    if( $prime==3)      { $exp= mrow(  $exp, moa( $ent{tprime}));   }
+    if( $dot==1)        { $exp= mover( $exp, moa( $ent{dot}));      } 
     if( $dot==2)        { $exp= mover( { accent => 'true' }, $exp, mo( $ent{twodots}));  } 
     if( $dot==3)        { $exp= mover( { accent => 'true' }, $exp, mo( $ent{ellip}));    } 
     if( $bar==1)        { $exp= mover( { accent => 'true' }, $exp, mo( $ent{overline})); }
@@ -506,12 +522,18 @@ sub offset_tweak
 
 sub parse_format
   { my( $format_token)= @_;
-    return if ! $format_token;
+
+    return if ! $format_token || ! $format_token->[0];
+
+    my $format={};
+
     my $format_string= $format_token->[0]; # that's where Parse::RecDescent puts the format string
-    while( $format_string=~ s{^([Mmnuv]|([AcCDijNoORSU])\d+\2|([BfqTVW])"[^"]*"\3|([s])[\d.]*\4|([blrtxyZ])-?\d*\5)}{})
+
+    # metrics would need to be processed differently I think
+    while( $format_string=~ s{^([Mmnuv]|([AcCDijNoORSU])\d+\2|([BfqTVW])"[^"]*"\3|([s])[\d.]*\4|([blrtxyZ])-?[\d.]*\5)}{})
       { my $format_part= $1; 
         if( length( $format_part) == 1)
-          { $format->{$format_part}= 1; }
+          { $format->{$format_part}= 1; } # single letter format
         else
           { my $type= substr( $format_part, 0, 1); 
             # remove the format code (first and last char) and surrounding quotes if present
@@ -526,20 +548,86 @@ sub parse_format
               { $format->{$type} = $val; }
           }
       }
-    # warn "format: [$format_token->[0]] parsed as ", join( ', ', map { "$_ => $format->{$_}" } sort keys %$format), "\n";
+    #warn "format: [$format_token->[0]] parsed as ", join( ', ', map { "$_ => $format->{$_}" } sort keys %$format), "\n";
     return $format;
   }
 
 
 sub apply_format
-  { my( $format, $e)= @_;
-    if( my $yoffset = $format->{y})  { $e= apply_yoffset( $yoffset, $e); }
-    if( my $lspace  = $format->{l})  { $e= hspace( $lspace) . $e;        }
-    if( my $rspace  = $format->{r})  { $e.= hspace( $rspace);            }
-    if( exists $format->{C})         { $e= $format->{c} ? uc_content( $e) : $e; } # if ! $format->{C} may need to be lc_content( $e)
-    if( $format->{v})                { $e= $e . '<mspace linebreak="newline" />'; }
+  { my $format= shift;
+    my @e= @_;
 
-    return $e;
+    my $m_to_pt= 65536;
+
+    # formats that apply to the single element that's being passed 
+    if( my $yoffset = $format->{y})  { $e[0]= apply_yoffset( $yoffset, $e[0]);    }
+    if( exists $format->{C})         { if( $format->{C}) { uc_content( @e); }  
+                                       else              { lc_content( @e); }
+                                     } 
+
+    math_variant( $e[0], $format); 
+
+    # formats that add elements, should be after the previous rules
+    if( my $xoffset = $format->{x})  { unshift @e, hspace( int( $xoffset/$m_to_pt)); } # x is "kern value" but seems to be used for spacing
+    if( my $lspace  = $format->{l})  { unshift @e, hspace( $lspace/$m_to_pt);  }
+    if( my $rspace  = $format->{r})  { push @e, hspace( $rspace/$m_to_pt);     }
+    if( $format->{v})                { push @e, tag( mspace => { linebreak => "newline" }); }
+
+    $_->set_format( $format) foreach @e; # so it can be accessed later
+
+    return @e > 1 ? [@e] : $e[0];
+  }
+
+sub math_variant
+  { my( $e, $format)= @_;
+
+    if( ! UNIVERSAL::isa( $e, 'pelt')) 
+      { warn "e is not an elt: [$e] [$e->[0]]\n"; }
+
+    my $text           = $e->text_only;
+    my $tag            = $e->tag;
+    my $special        = $is_ent{$text} ? 1 : 0;
+    my $single_char    = $tag eq 'mi' && length $text == 1 && ! $special; # defaults to 'italic'
+    my $single_special = $tag eq 'mi' && length $text == 1 && $special;   # should not be italicized
+
+    #warn "tag: [$tag] text: [$text] special: $special single_char: $single_char single_special: $single_special\n";
+
+    my $mathvariant='';
+
+    if( $single_char) # 1 char, defaults to italics
+      { if( $format->{W} eq 'Bold' && ! $format->{B})    
+          { $mathvariant= 'bold-italic'; }
+        elsif( $format->{W} eq 'Bold' && $format->{B} eq 'Regular')
+          { $mathvariant= 'bold'; }
+        elsif( $format->{W} || $format->{B})
+          { warn "unknown format for char '$text': ", dump_format( $format); }
+      }
+    elsif( $single_special) # special char, needs to be set to normal if not specifically in italics
+      { if( ! $format->{W} && ! $format->{B})
+          { $mathvariant= 'normal'; }
+        elsif( $format->{W} eq 'Bold' && ! $format->{B})    
+          { $mathvariant= 'bold'; }
+        elsif( ! $format->{W} && $format->{B} eq 'Italic')
+          { $mathvariant= ''; }
+        elsif( $format->{W} eq 'Bold' && $format->{B} eq 'Italic')
+          { $mathvariant= 'bold-italic'; }
+        elsif( $format->{W} || $format->{B})
+          { warn "unknown format for special char '$text': ", dump_format( $format); }
+      }
+    else
+      { if( $format->{W} eq 'Bold' && ! $format->{B})    
+          { $mathvariant= 'bold'; }
+        elsif( ! $format->{W} && $format->{B} eq 'Italic')
+          { $mathvariant= 'italic'; }
+        elsif( $format->{W} eq 'Bold' && $format->{B} eq 'Italic')
+          { $mathvariant= 'bold-italic'; }
+        elsif( $format->{W} || $format->{B})
+          { warn "unknown format for $tag '$text': ", dump_format( $format); }
+
+      }
+
+    $e->set_att( mathvariant => $mathvariant) if $mathvariant;
+    return;
   }
 
 
@@ -552,9 +640,12 @@ sub apply_yoffset
   }
 
 sub uc_content
-  { my( $e)= @_;
-    # uc only non tags
-    return join( '', map { m{^<} ? $_ : uc } split( /(<[^>]*>)/, $e));
+  { foreach my $e ( @_)
+      { foreach ($e->descendants( '#TEXT')) { $_->set_text( uc( $_->text)); } }
+  }
+sub lc_content
+  { foreach my $e ( @_)
+      { foreach ($e->descendants( '#TEXT')) { $_->set_text( lc( $_->text)); } }
   }
 
 sub replace_frame_escapes
@@ -572,66 +663,80 @@ sub replace_frame_escapes
   }
 
 
+sub flatten { map { ref $_ eq 'ARRAY' ? flatten(@$_) : $_ } @_ }
+
+sub dump_format { my $format=shift; return join ', ', map { "$_=[$format->{$_}]" } sort keys %$format; }
+
+sub dump_item { warn "parsed: ", dump_item_array( @{$_[0]}), "\n"
+              #     . "        ", dump_item_hash( %{$_[1]}), "\n"
+                ; 
+              }
+sub dump_item_array   { return join( ', ', map { UNIVERSAL::isa( $_, 'pelt') ? "[elt (" . $_->tag . ")]" : "[$_]" } flatten( @_)); }
+sub dump_item_hash    { my %i= @_; return join( ', ', map { "$_ => " . dump_item_array( $i{$_}) } sort keys %i); }
+
 }
 
 # the grammar itself 
 
-exp  : ( node | string | num | char | ind |tnum | <error?>)          { $return= $item[1]; 1; }
-node : ident '[' format(?) exp(s /,/) ']'           { my $node= $dp->{$item{ident}};
+exp  : ( node | string | num | char | ind |tnum | <error?> <reject>)          { $return= $item[1]; 1; }
+node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident};
+
+                                                      my $node= $dp->{$node_type};
                                                       if( !$node) { warn "unknown node type: $item{ident}\n"; }
                                                       # warn "node: $item{ident}\n";
-                                                      $format= parse_format( $item{'format(?)'});
-                                                      $return= $node->(@{$item[4]});
+                                                      
+
+                                                      my $format= parse_format( $item{'format(?)'});
+
+                                                      # if the node handler needs the format, it's the 1st arg
+                                                      my @args=  $need_format{$node_type} ? ( $format) : ();
+                                                     
+                                                      push @args, @{$item[4]};
+
+                                                      $return= $node->(@args);
+                                                      
+                                                      foreach my $r (flatten( $return)) { $r->set_from( $node_type); }
+
                                                       # should be OK, needs testing though
-                                                      #$return= apply_format( $format, $return);  
-                                                       $format={};
+                                                      $return= apply_format( $format, $return); 
+                                                     
                                                       1;
                                                     }
-string  : 'string' '[' format(?) '"' tstring '"' ']' { my $string= replace_frame_escapes( $item{tstring});
+string  : 'string' '[' format(?) '"' tstring '"' ']' { my $string= replace_frame_escapes( $item{tstring}); 
                                                        if( $string=~ m{^\s+$})
                                                          { $return= hspace( 8 * length( $string)); }
                                                        else
-                                                         { $return= mtext( escape_pcdata( $string)); }
+                                                         { $return= mtext( $string); }
  
-                                                       $format= parse_format( $item{'format(?)'});
+                                                       my $format= parse_format( $item{'format(?)'});
                                                        $return= apply_format( $format, $return);  
-                                                       $format={};
                                                        1;
                                                       }
 num     : 'num' '[' format(?) tnum ',' '"' tstring '"' ']' { $return= mn( $item{tstring});    
-                                                             $format= parse_format( $item{'format(?)'});
+                                                             my $format= parse_format( $item{'format(?)'});
                                                              if( $format->{y}) { $return= offset_tweak( $return, $format->{y}); }
+                                                             apply_format( $format, $return); 
+                                                             #warn "in num rule: num: [$item{tstring}], format: ", dump_format( $format), ", return: ", $return->sprint, "\n";
                                                              1;
                                                          }
-char    : /(char|dummy)/ '[' format(?) tchar  ']'     { $format= parse_format( $item{'format(?)'});
+char    : /(char|dummy)/ '[' format(?) tchar  ']'     { my $format= parse_format( $item{'format(?)'});
                                                         $return= $item{tchar};
 
-                                                        # process format
-                                                        my %att;
-
                                                         if( my $font= $format->{f})           
-                                                          { if( $font eq 'Symbol') # replace the character
-                                                              {  $return=~ s{>(.)<}{if( my $s= $symbol{$1}){">$s<"}else{">$1<"}}e; }
+                                                          { # TODO
+                                                            if( $font eq 'Symbol') # replace the character
+                                                              {  $return->set_text( join '', map { $symbol{$_} || $_ } split //, $return->text); }
                                                             else
-                                                              { $att{fontfamily}= $font; }
+                                                              { $return->set_att( fontfamily => $font); }
                                                           }
-                                                        if( my $variant= variant( '', $format)) { $att{mathvariant}= $variant; }
   
-                                                        if( keys %att)
-                                                          { # we need to update the attributes of the char
-                                                            my $atts= atts_string( %att);
-                                                            $return=~ s{<([a-z]*)>}{<$1$atts>};
-                                                          }
-                                                              
                                                         $return= apply_format( $format, $return);
-                                                        $format={};
                                                         # warn "returning '$return' for char";
                                                         1;
                                                       }
-
 ident   : /\w+/             { $return= $item[1]; 1; }
 tnum    : /[+-]?\d+\.\d+/   { $return= $item[1]; 1; }
-tchar   : /[^\]]*/          { $return= single_char( $item[1]); 1; }
+tchar   : /[^\]]*/          { $return= single_char( $item[1]);   1; }
 ind     : /\d+/             { $return= $item[1]; 1; } # a simple number, used for indices, matrix dimensions...
 format  : '(*' /[^*]*/ '*)' { $return= $item[2]; 1; }
 tstring : <skip:"">/[^"]*/<skip:$item[1]>           { $return= $item[2]; 1; } # need to change skip so we don't skip over whitespaces
@@ -661,34 +766,24 @@ foreach my $file (@ARGV)
             next;
           }
         my $comment = $opt{C} ? "\n<!-- $opt{C} -->" : "";
-        my $mml= qq{<math xmlns="http://www.w3.org/1998/Math/MathML" mathbackground="transparent" displaystyle="true">$comment$mml_content</math>};
+        my $root= pelt->new( math => { xmlns => "http://www.w3.org/1998/Math/MathML", mathbackground => "transparent",  displaystyle => "true" }, $mml_content);
+        my $mml= ptwig->new->set_root( $root);
         $mml= clean_up_mml( $mml);
         spit( filename( mml => $file), $mml);
         if( $opt{v}) { warn "mml in ", filename( mml => $file), "\n"; } 
       }
 
-    if( $opt{s}) 
-      { my $nok= system mml2svg( $file);
-        if( $nok && $opt{e}) { die "error in '", join( " ", mml2svg( $file)), "': ", $@; } 
-        if( $opt{v}) { warn "svg in ", filename( svg => $file), "\n"; } 
-      }
-
-    if( $opt{p}) 
-      { my $nok= system svg2png( $file); 
-        if( $nok && $opt{e}) { die "error in '", join( " ", svg2png( $file)), "': ", $@; } 
-        if( $opt{v}) { warn "png in ", filename( png => $file), "\n"; } 
-      }
   }
 
 sub clean_up_mif
   { my( $mif)= @_;
-    my $clean_mif='';
+    my $clean_mif= $mif;
     if( $mif=~ m{<MathFullForm `([^']*)'\s*> # end of MathFullForm})
-      { $clean_mif= $1; 
-        $clean_mif=~ s{[\r\n]}{}g;
-        $clean_mif=~ s{prompt\[\s*(\([^)]*\))?\s*\]}{'char[' . ( $1 && $prompt{$1} ? $prompt{$1} : ' ') . ']'}eg; # hack, replace prompt by ' ' or '⋮'
-        $clean_mif=~ s{\(\*[xl].*?\)}{}g; # these formats are not processed
-      }
+      { $clean_mif= $1; }
+
+    $clean_mif=~ s{[\r\n]}{}g;
+    $clean_mif=~ s{prompt\[\s*(\([^)]*\))?\s*\]}{'char[' . ( $1 && $prompt{$1} ? $prompt{$1} : ' ') . ']'}eg; # hack, replace prompt by ' ' or '⋮'
+
     return $clean_mif;
   }
 
@@ -714,67 +809,20 @@ sub filename
 
 sub clean_up_mml
   { my( $mml)= @_;
-    my $t= XML::Twig->new( twig_handlers => { mrow    => \&tmrow,
-                                              #wrapper => \&twrapper,
-                                              mfenced => \&tmfenced,
+    my $t= XML::Twig->new( twig_handlers => { #mrow    => \&tmrow,
+                                              #mfenced => \&tmfenced,
                                               mtext   => \&tmtext,
-                                              #mo      => sub { warn "text: [", dchar($_->text), "]\n"; if( $_->text =~ m{^\s*$} ) { warn "empty mo!\n"; $_->set_tag( 'mtext'); $_->set_text( 'X'); } },
                                              'mtr[@class="align_on_equal"]' => \&mtr_atop,
                                              'mspace[@class="list"]' => sub { if( $_->in( 'mtd')) { $_->delete; } $_->del_att( 'class'); },
  
                                             },
-                           pretty_print => 'indented',
+                           pretty_print => $opt{i} || 'indented',
                            error_context => 1,
                          )
-         ->parse( $mml);
+         ->parse( $mml->sprint);
     return $t->sprint;
   }
 
-sub dchar
-  { my( $s)= @_;
-    return join ' - ', map { charinfo( ord($_))->{name} } split //, $s;
-  } 
-
-sub twrapper
-  { my( $t, $wrapper)= @_;
-    $wrapper->first_child->set_att( mathvariant => $wrapper->att( 'mathvariant'));
-    $wrapper->erase;
-  }
-
-sub tmrow
-  { my( $t, $mrow)= @_;
-    if( $mrow->has_no_atts && ($mrow->children()==1)  && $mrow->children( 'mrow'))
-      { $mrow->first_child->erase; }
-  }
-
-sub tmfenced
-  { my( $t, $mfenced)= @_;
-    my @children= $mfenced->children;
-    my @esep; # separators, to be deleted if they can be replaced by the separator attribute
-    my $sep;
-    while( @children)
-      { shift @children;                  # skip a child
-        if( my $esep= shift @children)    # next one should be a mi containing the separator
-          { if( $esep->tag ne 'mi') 
-              { return; }                 # failed, not a mi
-            if( ! defined $sep)
-              { $sep= $esep->text;        # first separator found, store it to see if they are all alike 
-                push @esep, $esep;        #  store the element so we can remove it later
-              }
-            else
-              { if( $esep->text ne $sep)
-                  { return; }             # failed: 2 different separators found
-                else
-                  {  push @esep, $esep; } # still good, store the element so we can remove it later
-              }
-          }
-      }
-    if( ! defined $sep) { return; } # no separator, just 1 element in mfenced, should not happen
-
-    # if we get here, we have a success
-    $mfenced->set_att( separators => $sep);     # set attribute
-    foreach my $esep (@esep) { $esep->delete; } # remove elements
-  }
 
 sub tmtext
   { my( $t, $mtext)= @_; 
@@ -800,6 +848,56 @@ sub mtr_atop
     #$mtr->del_att( 'class');
   }
 
+package ptwig;
+use base 'XML::Twig';
+
+sub new
+  { my $t= shift;
+    return bless $t->SUPER::new( elt_class => 'pelt', @_);
+  }
+
+1;
+
+package pelt;
+use base 'XML::Twig::Elt';
+
+sub new
+  { my $t= shift;
+    return bless $t->SUPER::new( @_);
+  }
+
+
+# return the value of a format (if the code argument is given), or the entire format hash
+sub format
+  { my( $elt, $code)= @_;
+    my $format= $elt->att( '#format') || {};
+    return $code ? $format->{$code} : $format;
+  }
+
+sub set_format
+  { my $elt= shift;
+    my $format= shift || {};
+    $elt->set_att( 'data-format' => join ', ', map { "$_: [$format->{$_}]" } keys %$format) if $opt{D};
+    return $elt->set_att( '#format' => $format);
+  }
+
+sub from     
+  { return $_[0]->att( '#from'); }
+sub from_in
+  { my $elt= shift;
+    foreach my $from (@_)
+      { if( $elt->from && $elt->from eq $from) { return $elt; } }
+    return 0;
+  }
+sub set_from 
+  { my( $elt, $from)= @_;
+    $elt->set_att( 'data-from', $from) if $::opt{D}; 
+    return $elt->set_att( '#from', $from); 
+  }
+
+1;
+
+package main;
 __END__
 =head1 NAME
 
@@ -807,16 +905,17 @@ __END__
 
 =head1 OPTIONS
 
-  -s  generates also an SVG file for each equation 
-      (needs math2svg or other converter installed)
-  -p  generates also a PNG file for each equation 
-      (needs math2svg and inkscape or other converter installed)
-
   -c  only converts if the MathML file (.mml) does not exist already
 
   -C  comment, to add to the beginning of the file
 
   -v verbose
+
+  -D debug adds debugging attributes to the mml elements 
+     - data-format for the Frame format and 
+     - data-from   for the frame construct an element comes from
+
+  -i <indent_type> changes the result identation, 'none' or 'indented' (default)
 
 =head1 REQUIREMENTS
 
