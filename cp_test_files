@@ -1,0 +1,15 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use File::Basename;
+
+foreach my $f (@ARGV)
+  { my $base= basename( $f, '.mif', '.mml');
+    my $mif= "test/mif/$base.mif";
+    my $tmif= "t/mif/$base.mif";
+    my $mml= "test/mml/$base.mml";
+    my $tmml= "t/mml/$base.mml";
+    print "  cp $mif $tmif && cp $mml $tmml\n"; 
+  }

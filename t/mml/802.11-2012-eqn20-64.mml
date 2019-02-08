@@ -1,0 +1,40 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <msub>
+      <mover accent="true">
+        <mi>H</mi>
+        <mo accent="true">~</mo>
+      </mover>
+      <mrow>
+        <mtext>AB</mtext>
+        <mtext> , </mtext>
+        <mi>k</mi>
+      </mrow>
+    </msub>
+    <mo>=</mo>
+    <mrow>
+      <msub>
+        <mi>B</mi>
+        <mrow>
+          <mtext>RX, </mtext>
+          <mi>k</mi>
+        </mrow>
+      </msub>
+      <msub>
+        <mi>H</mi>
+        <mrow>
+          <mtext>AB</mtext>
+          <mtext> , </mtext>
+          <mi>k</mi>
+        </mrow>
+      </msub>
+      <msub>
+        <mi>A</mi>
+        <mrow>
+          <mtext>TX, </mtext>
+          <mi>k</mi>
+        </mrow>
+      </msub>
+    </mrow>
+  </mrow>
+</math>

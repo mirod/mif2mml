@@ -1,0 +1,9 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <msub>
+    <mover accent="true">
+      <mi>y</mi>
+      <mo>‾</mo>
+    </mover>
+    <mi>i</mi>
+  </msub>
+</math>

@@ -1,0 +1,46 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <msub>
+      <mi>N</mi>
+      <mi>i</mi>
+    </msub>
+    <mo>=</mo>
+    <mrow>
+      <mn>10</mn>
+      <mspace width="8pt"/>
+      <mrow>
+        <mo>log</mo>
+        <mrow>
+          <mfenced close="]" open="[" separators="">
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mn>10</mn>
+                  <mn>12</mn>
+                </msup>
+                <msup>
+                  <mfenced separators="">
+                    <mrow>
+                      <msub>
+                        <mi>V</mi>
+                        <mi>f</mi>
+                      </msub>
+                      <mo>⋅</mo>
+                      <msub>
+                        <mi>P</mi>
+                        <mi>f</mi>
+                      </msub>
+                    </mrow>
+                  </mfenced>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+              <mn>600</mn>
+            </mfrac>
+          </mfenced>
+          <mtext>dBrn</mtext>
+        </mrow>
+      </mrow>
+    </mrow>
+  </mrow>
+</math>
