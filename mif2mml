@@ -578,7 +578,7 @@ sub apply_format
     if( my $xkern  = $format->{r})   { $padding_atts->{width}   = m_to_pt( $xkern);   }
     if( my $ykern  = $format->{y})   { $padding_atts->{height}  = m_to_pt( $ykern);   } # probably wrong, may need to be height
     if( $padding_atts)
-      { warn "padding!\n";
+      { # warn "padding!\n";
         foreach my $att ( keys %$padding_atts) 
           { if( $padding_atts->{$att} eq "+0pt") { delete $padding_atts->{$att}; } # remove padding that turns out to be 0
           }
@@ -745,6 +745,29 @@ char    : /(char|dummy)/ '[' format(?) tchar  ']'     { my $format= parse_format
                                                           }
   
                                                         $return= apply_format( $format, $return);
+
+                                                        # in some cases (decorations) what's returned is not a single element but a (small) tree
+                                                        # eg an mrow with the char and an accent
+                                                        # the format needs to be applied to the sub elements (because of single chars rules about special/non-special chars) 
+                                                        foreach my $e (map { $_->descendants( '#ELT') } flatten($return))
+                                                          { my $ef= apply_format( $format, $e);
+                                                            # if apply_format does NOT generate new elements (like spaces) we're good, 
+                                                            # format has been applied in-place
+                                                            # if it does generate new elements, they are returned as an array ref, 
+                                                            # including the original one element
+                                                            # in this case we create a place holder next to the original element, cut the element, paste the
+                                                            # returned values and discard the place holder (replace_with does not work as the original element
+                                                            # is part of the values)
+                                                            if( ref $ef eq 'ARRAY')
+                                                              { my @ne= flatten( $ef);
+                                                                my $tmp= $e->insert_new_elt( after=> 'tmp');
+                                                                $e->cut;
+                                                                foreach my $ne (@ne) { $ne->paste( before => $tmp); }
+                                                                $tmp->cut;
+                                                              }
+                                                            warn "    return: [", $return->sprint, "]\n";
+                                                          }
+                                                         
                                                         # warn "returning '$return' for char";
                                                         1;
                                                       }
