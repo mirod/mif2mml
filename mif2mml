@@ -107,7 +107,7 @@ my %special=
                        },
     plus        => sub { # if next mo is a -, the + is not used
                          my @children= shift( @_);
-                         foreach my $child (@_)
+                         foreach my $child ( flatten(@_))
                            { if( ! $child->from_in( qw(minus mp pm)) )
                                { push @children, mo( '+'); }
                               push @children, $child;
@@ -274,7 +274,7 @@ sub moi { return tag( mo => { mathvariant => 'italic' }, @_); }
 sub mrows { return [ map { mrow( $_) } @_ ]; }
 
 BEGIN 
-  { foreach my $elt (qw( mo mi mn mtext msup msub mfrac mover munder msqrt mroot mspace mtable mtr mtd mmultiscripts))
+  { foreach my $elt (qw( mo mi mn mtext msup msub mfrac mover mroot munder msqrt mspace mtable mtr mtd mmultiscripts mpadded))
       {  no strict 'refs';
         *{$elt}= sub { tag( $elt => @_); };
       }
@@ -282,8 +282,6 @@ BEGIN
 
 sub none        { return tag( 'none');        }
 sub mprescripts { return tag( 'mprescripts'); }
-sub hspace      { return tag( mspace => { width  => "$_[0]pt"});  }
-sub vspace      { return tag( mspace => { height => "$_[0]pt"}); }
 
 sub mrow
   { my %atts;
@@ -552,26 +550,47 @@ sub parse_format
     return $format;
   }
 
+sub m_to_pt
+  { my $m= shift;
+    my $pt= int($m/65536);
+    if( $pt >= 0) { return "+$pt" . "pt"; }
+    else          { return $pt . "pt";    }
+    return $pt;
+  }
 
 sub apply_format
   { my $format= shift;
     my @e= @_;
 
-    my $m_to_pt= 65536;
-
     # formats that apply to the single element that's being passed 
-    if( my $yoffset = $format->{y})  { $e[0]= apply_yoffset( int($yoffset/$m_to_pt), $e[0]);    }
     if( exists $format->{C})         { if( $format->{C}) { uc_content( @e); }  
                                        else              { lc_content( @e); }
                                      } 
-
     math_variant( $e[0], $format); 
 
+    # positioning, wrap in mpadded
+    my $padding_atts;
+    if( my $bspace  = $format->{b})  { $padding_atts->{voffset} = m_to_pt( $bspace ); }
+    if( my $lspace  = $format->{l})  { $padding_atts->{lspace}  = m_to_pt( $lspace ); }
+    if( my $rspace  = $format->{r})  { $padding_atts->{width}   = m_to_pt( $rspace);  }
+    # x and y are kerning, but seem to be used for spacing 
+    # todo: experiment with style="letter-spacing:$rspace" for x and maybe style/padding for both
+    if( my $xkern  = $format->{r})   { $padding_atts->{width}   = m_to_pt( $xkern);   }
+    if( my $ykern  = $format->{y})   { $padding_atts->{height}  = m_to_pt( $ykern);   } # probably wrong, may need to be height
+    if( $padding_atts)
+      { warn "padding!\n";
+        foreach my $att ( keys %$padding_atts) 
+          { if( $padding_atts->{$att} eq "+0pt") { delete $padding_atts->{$att}; } # remove padding that turns out to be 0
+          }
+        if( keys %$padding_atts)
+          { $e[0] = mpadded( $padding_atts, $e[0]); }
+      }
+
+    
     # formats that add elements, should be after the previous rules
-    if( my $xoffset = $format->{x})  { unshift @e, hspace( int( $xoffset/$m_to_pt)); } # x is "kern value" but seems to be used for spacing
-    if( my $lspace  = $format->{l})  { unshift @e, hspace( $lspace/$m_to_pt);  }
-    if( my $rspace  = $format->{r})  { push @e, hspace( $rspace/$m_to_pt);     }
     if( $format->{v})                { push @e, tag( mspace => { linebreak => "newline" }); }
+
+    
 
     $_->set_format( $format) foreach @e; # so it can be accessed later
 
@@ -599,6 +618,8 @@ sub math_variant
           { $mathvariant= 'bold-italic'; }
         elsif( $format->{W} eq 'Bold' && $format->{B} eq 'Regular')
           { $mathvariant= 'bold'; }
+        elsif( ! $format->{W} && $format->{B} eq 'Regular')
+          { $mathvariant= 'normal'; }
         elsif( $format->{W} || $format->{B})
           { warn "unknown format for char '$text': ", dump_format( $format); }
       }
@@ -630,14 +651,6 @@ sub math_variant
     return;
   }
 
-
-sub apply_yoffset
-  { my( $yoffset, $e)= @_;
-    if( $yoffset > 0)
-      { return mrow( mspace( { height => int($yoffset) } ), $e); }
-    else
-      { return mrow( mspace( { depth => int(-$yoffset) } ), $e); }
-  }
 
 sub uc_content
   { foreach my $e ( @_)
@@ -704,7 +717,8 @@ node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident
                                                     }
 string  : 'string' '[' format(?) '"' tstring '"' ']' { my $string= replace_frame_escapes( $item{tstring}); 
                                                        if( $string=~ m{^\s+$})
-                                                         { $return= hspace( 8 * length( $string)); }
+                                                         { my $length= 8 * length( $string);
+                                                           $return= mspace( { width => $length . 'pt'}); }
                                                        else
                                                          { $return= mtext( $string); }
  
@@ -814,9 +828,10 @@ sub clean_up_mml
                                               mtext   => \&tmtext,
                                              'mtr[@class="align_on_equal"]' => \&mtr_atop,
                                              'mspace[@class="list"]' => sub { if( $_->in( 'mtd')) { $_->delete; } $_->del_att( 'class'); },
- 
+     
                                             },
                            pretty_print => $opt{i} || 'indented',
+                           elt_class => 'pelt', 
                            error_context => 1,
                          )
          ->parse( $mml->sprint);
@@ -826,8 +841,10 @@ sub clean_up_mml
 
 sub tmtext
   { my( $t, $mtext)= @_; 
-    if( $mtext->prev_sibling_is( 'mtext')) { $mtext->prefix( ' '); }
+    if( $mtext->prev_sibling_is( qr/mtext|mi|mo|mrow/)) { $mtext->add_to_prop( 'padding-left' => 8); }
+    if( $mtext->next_sibling_is( qr/mi|mo|mrow/))       { space()->paste( after  => $mtext); }
   }
+
 
 sub mtr_atop
   { my( $t, $mtr)= @_; 
@@ -861,9 +878,63 @@ sub new
 package pelt;
 use base 'XML::Twig::Elt';
 
+my $prop_unit;
+
+BEGIN
+  { $prop_unit= { map { $_ => 'pt' } (qw( width height depth)) };
+  }
+
 sub new
   { my $t= shift;
     return bless $t->SUPER::new( @_);
+  }
+
+# style methods
+# style is a hash prop => value stored in the attribute '#style'
+# when the style is changed, the attribute 'style' is updated (for output)
+# prop is a style property
+# they can be retrieved, set or added to (for metrics)
+# some numeric props have a unit, the numeric value is stored in '#style', 
+#   the unit added to 'style' (so we can do math on the prop in '#style')
+# props can be named "Perl style" (with '_' instead of '-', eg padding_left)
+
+sub style
+  { my( $elt)= @_;
+    return $elt->att( '#style') || {};
+  }
+    
+sub set_style
+  { my $elt= shift;
+    my $style = shift;
+    $elt->set_att( '#style' => $style);
+    $elt->set_att( 'style'  => _format_style( $style));
+    return $elt;
+  }
+
+sub prop
+  { my( $elt, $prop)= @_;
+    $prop=~ s{_}{-}g;
+    $prop= $elt->style->{$prop} || '';
+  }
+
+sub set_prop
+  { my( $elt, $prop, $value)= @_;
+    $prop=~ s{_}{-}g;
+    my $style= $elt->att( '#style') || {};
+    $style->{$prop} = $value;
+    $elt->set_att( 'style'  => _format_style( $style));
+  }    
+
+sub add_to_prop
+  { my( $elt, $prop, $value)= @_;
+    my $initial_value = $elt->prop( $prop) || 0;
+    $elt->set_prop( $initial_value + $value);
+  } 
+
+sub _format_style
+  { my( $style)= @_;
+
+    return join ( '; ', map { "$_: $style->{$_}" . ( $prop_unit->{$_} || '') } grep { $style->{$_} } sort keys %$style);
   }
 
 
