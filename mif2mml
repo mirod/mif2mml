@@ -301,13 +301,15 @@ sub mfenced
    
     my $tag= 'mfenced';
     #warn "checking children\n";
-    foreach my $child (flatten( @_) )
-      { #warn "  child: ", $child->tag, " n: ", $child->format('n'), " child is ", $child->sprint, "\n"; 
-        if( UNIVERSAL::isa( $child, 'pelt') && $child->format( 'n')) 
-          { # warn "no fencing\n"; 
-            $tag='mrow'; 
-            %atts=(); 
-            last;
+    if( ! $_[0])
+      { foreach my $child (flatten( @_) )
+        { #warn "  child: ", $child->tag, " n: ", $child->format('n'), " child is ", $child->sprint, "\n"; 
+            if( UNIVERSAL::isa( $child, 'pelt') && $child->format( 'n')) 
+              { # warn "no fencing\n"; 
+                $tag='mrow'; 
+                %atts=(); 
+                last;
+              } 
           } 
       }
     return tag( $tag => \%atts, @_);
@@ -733,8 +735,10 @@ num     : 'num' '[' format(?) tnum ',' '"' tstring '"' ']' { $return= mn( $item{
                                                              #warn "in num rule: num: [$item{tstring}], format: ", dump_format( $format), ", return: ", $return->sprint, "\n";
                                                              1;
                                                          }
-char    : /(char|dummy)/ '[' format(?) tchar  ']'     { my $format= parse_format( $item{'format(?)'});
+char    : /(char|dummy)/ '[' format(?) tchar  ']'     { my $format= parse_format( $item{'format(?)'}); 
                                                         $return= $item{tchar};
+
+                                                        $return= apply_format( $format, $return); 
 
                                                         if( my $font= $format->{f})           
                                                           { # TODO
@@ -743,32 +747,21 @@ char    : /(char|dummy)/ '[' format(?) tchar  ']'     { my $format= parse_format
                                                             else
                                                               { $return->set_att( fontfamily => $font); }
                                                           }
-  
-                                                        $return= apply_format( $format, $return);
 
                                                         # in some cases (decorations) what's returned is not a single element but a (small) tree
                                                         # eg an mrow with the char and an accent
                                                         # the format needs to be applied to the sub elements (because of single chars rules about special/non-special chars) 
-                                                        foreach my $e (map { $_->descendants( '#ELT') } flatten($return))
-                                                          { my $ef= apply_format( $format, $e);
-                                                            # if apply_format does NOT generate new elements (like spaces) we're good, 
-                                                            # format has been applied in-place
-                                                            # if it does generate new elements, they are returned as an array ref, 
-                                                            # including the original one element
-                                                            # in this case we create a place holder next to the original element, cut the element, paste the
-                                                            # returned values and discard the place holder (replace_with does not work as the original element
-                                                            # is part of the values)
-                                                            if( ref $ef eq 'ARRAY')
-                                                              { my @ne= flatten( $ef);
-                                                                my $tmp= $e->insert_new_elt( after=> 'tmp');
-                                                                $e->cut;
-                                                                foreach my $ne (@ne) { $ne->paste( before => $tmp); }
-                                                                $tmp->cut;
-                                                              }
-                                                            warn "    return: [", $return->sprint, "]\n";
+                                                        foreach my $e ( map { $_->descendants( '#ELT') } flatten($return))
+                                                          { # warn "before applying format ", dump_format( $format), "to [", $e->sprint, "]\n";
+                                                            my $tmp= $e->insert_new_elt( after=> 'tmp');
+                                                            $e->cut;
+                                                            $e= apply_format( $format, $e);
+                                                            foreach my $ne (flatten( $e))
+                                                              { $ne->move( before => $tmp); }
+                                                            $tmp->cut;
+                                                            #warn "    return: [", $return->sprint, "]\n";
                                                           }
-                                                         
-                                                        # warn "returning '$return' for char";
+                                                        # warn "returning '$return' for char"; 
                                                         1;
                                                       }
 ident   : /\w+/             { $return= $item[1]; 1; }
@@ -871,7 +864,7 @@ sub tmtext
 
 sub mtr_atop
   { my( $t, $mtr)= @_; 
-    warn "align_on_equal found\n"; 
+    #warn "align_on_equal found\n"; 
     return;
     if( $mtr->contains_a_single( 'mrow'))
       { my $mrow= $mtr->first_child( 'mrow');
@@ -930,7 +923,8 @@ sub set_style
   { my $elt= shift;
     my $style = shift;
     $elt->set_att( '#style' => $style);
-    $elt->set_att( 'style'  => _format_style( $style));
+    my $style_att= _format_style( $style);
+    $elt->set_att( 'style'  => $style_att) if $style_att;
     return $elt;
   }
 
@@ -945,7 +939,8 @@ sub set_prop
     $prop=~ s{_}{-}g;
     my $style= $elt->att( '#style') || {};
     $style->{$prop} = $value;
-    $elt->set_att( 'style'  => _format_style( $style));
+    my $style_att= _format_style( $style);
+    $elt->set_att( 'style'  => $style_att) if $style_att;
   }    
 
 sub add_to_prop
