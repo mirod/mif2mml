@@ -8,6 +8,7 @@ use utf8::all;
 use Test::More;
 use Text::Diff;
 use File::Copy;
+use List::MoreUtils qw(natatime);
 
 use Getopt::Std;
 my %opt;
@@ -25,6 +26,19 @@ my $html;
 local $/="\n\n";
 $html= <DATA>;
 
+# remove previous generated mmls, in case there are some left over
+system "rm -f $dmif/*.mml";
+
+# conversion, 100 at a time 
+# processing in batch speeds up processing, 
+# keeping it at 100 at a time ensures the command line is not too long
+# (maybe not needed since we use the list form of system, needs testing)
+
+my $it = natatime 100, @mifs;
+while (my @mif_slice = $it->())
+      { system './mif2mml', @mif_slice; }
+
+# now we test the results
 foreach my $mif (@mifs)
   { my $ok= test_gen( $mif);
     ok( $ok, "$mif"); 
@@ -51,10 +65,6 @@ sub test_gen
     my $tmp= tmp( $mif);
     my $gen= gen( $mif);
 
-    unlink $tmp; 
-
-    system "./mif2mml $mif";
-
     if( ! -f $tmp) { warn "  $tmp not generated from $mif\n"; return 0; }
     if( -z $tmp)   { warn "  $tmp generated as empty from $mif\n"; return 0; }
 
@@ -63,7 +73,7 @@ sub test_gen
     my $diff= `diff $mml $tmp`;
 
     if( $opt{k}) { unlink $gen; rename $tmp, $gen; }
-    else         { unlink $tmp;       }
+    else         { unlink $tmp;                    }
 
     if( $diff) { warn "  diff $mml $tmp\n $diff\n"; return 0; }
 
