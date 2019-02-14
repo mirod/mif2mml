@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+use 5.012;
+
 use utf8::all; # lots of funky chars in here
 
 use Getopt::Std;
@@ -68,6 +70,14 @@ my %frame_escape=
       'xd0 ' => '–',                                                # found this in an equation, don't know why d0 is a dash
     );
 
+# replace a letter with a bar above, but the bar is lowered to create a letter with stroke
+my %with_stroke=
+    ( b => 'ƀ', d => 'đ', f => 'ꞙ', g => 'ǥ', h => 'ħ', i => 'ɨ', j => 'ɉ',
+      k => 'ꝁ', p => 'ᵽ', r => 'ɍ', t => 'ŧ', y => 'ɏ', z => 'ƶ',
+      B => 'Ƀ', D => 'Đ', F => 'Ꞙ', G => 'Ǥ', H => 'Ħ', I => 'Ɨ', J => 'Ɉ', 
+      K => 'Ꝁ', P => 'Ᵽ', R => 'Ɍ', T => 'Ŧ', Y => 'Ɏ', Z => 'Ƶ',
+    );
+
 # nodes (operators in the MIF Reference)
 
 # these types of node require specific processing
@@ -80,7 +90,7 @@ my %special=
     lparen      => \&lparen,
     rparen      => \&rparen,
     indexes     => \&indexes,
-    diacritical => \&decoration,
+    diacritical => \&diacritical,
     ast         => sub { mrow( msup( $_[0], mo('∗'))); },
     box2        => sub { mrow( msup( mi($ent{box}), mi(2)), @_); },
     downbrace   => sub { mover( mrow( $_[0]), mo( $ent{topcurly})); },
@@ -203,7 +213,7 @@ my %nary=( approx => '≈', cap => '∩', cdot => '⋅', comma => ',', cong => '
 my %large=( bigcap => '∩', bigcup => '∪', int => '∫', oint => '∫', prod => '∏', sum => '∑');
 
 # those nodes require the format, it will be passed as the first argument to the sub
-my %need_format= map { $_ => 1 } ( qw( atop id lparen matrix rparen sn ), keys %large);
+my %need_format= map { $_ => 1 } ( qw( atop diacritical id lparen matrix rparen sn ), keys %large);
 
 sub wrap
   { my( $open, $close, $exp)= @_;
@@ -488,6 +498,28 @@ sub single_char
       { return $mi; }
   }
 
+sub diacritical
+  { my $format= shift;
+    my $exp= decoration( @_);
+    # $_[3] is bar (it's 1 when the decoration is an overbar)
+    if( $_[3] == 1 && $format->{t} && ( ($format->{t} / 65536) < -1.8) )
+      { my $mi= $exp->first_descendant( 'mi');
+        if( $mi)
+          { my $c = $mi->text;
+            if( my $stroke= $with_stroke{$c})
+              { $mi->next_sibling->cut;
+                $mi->set_text( $stroke);
+                if( $mi->parent->parent) 
+                  { $mi->parent->unwrap; }
+                else
+                  { $exp= $mi; }
+                warn "inserted [$stroke]\n";
+              }
+          }
+      }
+    return $exp;
+  }
+
 sub decoration
   { my( $vector, $prime, $dot, $bar, $underscore, $exp)= @_;
     # for now several decorations on the same expression are not treated specialcased (no munderover for example)
@@ -694,7 +726,7 @@ sub dump_item_hash    { my %i= @_; return join( ', ', map { "$_ => " . dump_item
 # the grammar itself 
 
 exp  : ( node | string | num | char | ind |tnum | <error?> <reject>)          { $return= $item[1]; 1; }
-node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident};
+node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident}; #/ (so vim syntax-highlighter does not get confused)
 
                                                       my $node= $dp->{$node_type};
                                                       if( !$node) { warn "unknown node type: $item{ident}\n"; }
@@ -717,12 +749,11 @@ node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident
                                                      
                                                       1;
                                                     }
-string  : 'string' '[' format(?) '"' tstring '"' ']' { my $string= replace_frame_escapes( $item{tstring}); 
-                                                       if( $string=~ m{^\s+$})
-                                                         { my $length= 8 * length( $string);
-                                                           $return= mspace( { width => $length . 'pt'}); }
-                                                       else
-                                                         { $return= mtext( $string); }
+string  : 'string' '[' format(?) '"' tstring '"' ']' { my $string= replace_frame_escapes( $item{tstring});
+                                                       my $nbsp= "\N{U+A0}";
+                                                       $string=~ s{ }{$nbsp}g;
+
+                                                       $return= mtext( $string);
  
                                                        my $format= parse_format( $item{'format(?)'});
                                                        $return= apply_format( $format, $return);  
@@ -735,18 +766,19 @@ num     : 'num' '[' format(?) tnum ',' '"' tstring '"' ']' { $return= mn( $item{
                                                              #warn "in num rule: num: [$item{tstring}], format: ", dump_format( $format), ", return: ", $return->sprint, "\n";
                                                              1;
                                                          }
-char    : /(char|dummy)/ '[' format(?) tchar  ']'     { my $format= parse_format( $item{'format(?)'}); 
-                                                        $return= $item{tchar};
+char    : /(char|dummy)/ '[' format(?) tchar  ']'     { $return= $item{tchar};
 
-                                                        $return= apply_format( $format, $return); 
+                                                        my $format= parse_format( $item{'format(?)'});
 
                                                         if( my $font= $format->{f})           
                                                           { # TODO
                                                             if( $font eq 'Symbol') # replace the character
-                                                              {  $return->set_text( join '', map { $symbol{$_} || $_ } split //, $return->text); }
+                                                              { $return->set_text( join '', map { $symbol{$_} || $_ } split //, $return->text); }
                                                             else
                                                               { $return->set_att( fontfamily => $font); }
                                                           }
+
+                                                        $return= apply_format( $format, $return);
 
                                                         # in some cases (decorations) what's returned is not a single element but a (small) tree
                                                         # eg an mrow with the char and an accent
@@ -841,7 +873,7 @@ sub clean_up_mml
   { my( $mml)= @_;
     my $t= XML::Twig->new( twig_handlers => { #mrow    => \&tmrow,
                                               #mfenced => \&tmfenced,
-                                              mtext   => \&tmtext,
+                                              # mtext   => \&tmtext,
                                              'mtr[@class="align_on_equal"]' => \&mtr_atop,
                                              'mspace[@class="list"]' => sub { if( $_->in( 'mtd')) { $_->delete; } $_->del_att( 'class'); },
      
@@ -852,13 +884,6 @@ sub clean_up_mml
                          )
          ->parse( $mml->sprint);
     return $t->sprint;
-  }
-
-
-sub tmtext
-  { my( $t, $mtext)= @_; 
-    if( $mtext->prev_sibling_is( qr/mtext|mi|mo|mrow/)) { $mtext->add_to_prop( 'padding-left' => 8); }
-    if( $mtext->next_sibling_is( qr/mi|mo|mrow/))       { space()->paste( after  => $mtext); }
   }
 
 
