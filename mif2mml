@@ -10,7 +10,7 @@ use utf8::all; # lots of funky chars in here
 use Getopt::Std;
 
 our %opt;
-getopts( 'nspvceC:Di:', \%opt);
+getopts( 'cFnvC:Di:', \%opt);
 
 if( $opt{p}) { $opt{s}=1; }
 
@@ -54,7 +54,7 @@ my %ent=
       topcurly  => '︷', bottomcurly => '︸', 
     );
 
-my %is_ent= map { $_ => 1 } values %ent;      
+my %is_ent= map { $_ => 1 } values %ent;     
 
 # to replace characters in the symbol font by the real character - from http://www.alanwood.net/demos/symbol.html
 # I have only included greek characters, as they are the only ones I have seen used
@@ -160,8 +160,13 @@ my %special=
                                   : $format->{j} == 1                         ? 'left'
                                   : $format->{j} == 2                         ? 'right'
                                   :                                             'left';
-                         my $class= $format->{j} >= 3 ? { class => 'align_on_equal' } : {};
-                         mtable( { columnalign => $align }, map { mtr( $class, mtd($_)) } @_); 
+                         my $mtable;
+                         if( $format->{j} < 3)
+                           { $mtable= mtable( { columnalign => $align }, map { mtr( mtd($_)) } @_); }
+                         else
+                           { $mtable= atop_aligned( $align, @_); }
+
+                         return $mtable;
                        },
   );
 
@@ -210,7 +215,52 @@ my %nary=( approx => '≈', cap => '∩', cdot => '⋅', comma => ',', cong => '
            bullet => '•', cross => '×', div => '÷', fract => '⁄'
          );
 
+# comparison operators (used to align atop with the proper format (j3j)), keys are the character, possibly created from the entity name
+my %is_comp = map { $nary{$_} => 1 } qw( geq greaterthan leq lessthan notequal approx cong equal equiv in lrarrow Leftarrow lrarrow LRarrow notin rightarrow Rightarrow sim subset subseteq supset supseteq);
+
+
 my %large=( bigcap => '∩', bigcup => '∪', int => '∫', oint => '∫', prod => '∏', sum => '∑');
+
+sub atop_aligned
+  { my $align= shift; 
+    #warn "atop with j3j format, content: ", dump_items( @_), "\n";
+    my $mtable= mtable( { columnalign => $align });
+    foreach my $mtr ( @_)
+      { #warn "new ", $mtr->tag, "\n";
+        if( $mtr->is( 'mrow'))
+          { my( @before_mo, $mo, @after_mo);
+            $mtr->set_tag( 'mtr');
+            foreach my $child ($mtr->children)
+              { #warn "  child is ", $child->tag, "(content: ", $child->text_only, ")\n";
+                $child->cut;
+                # the operator to align on is he first comparison <mo>
+                # this is NOT the right way to do this, the <mo> should be found through parsing, not its text
+                if( $child->is( 'mo') && ! $mo && $is_comp{$child->text})
+                  { $mo= $child; $child; }
+                elsif( $mo)
+                  { push @after_mo, $child; $child; }
+                else
+                  { push @before_mo, $child; $child; }
+              }
+
+            if( $mo) # found an mo, all 3 cells are filled 
+              { $mtr->set_content( mtd( @before_mo), mtd( $mo), mtd( @after_mo)); }
+            else     # no mo, first 2 cells are empty, everything goes in the 3rd one
+              { $mtr->set_content( mtd(), mtd(), mtd( @before_mo)); }
+
+            $mtr->paste( last_child => $mtable);
+          }
+        else
+          { # the entire row is a single element (often an mtext)
+            # which means that an mtr should be created, with the element in the 3rd cell (to align it)
+            my $row= mtr( mtd(), mtd(), mtd( $mtr));
+            $row->paste( last_child => $mtable);
+          }
+
+      }
+    return $mtable;
+  }
+
 
 # those nodes require the format, it will be passed as the first argument to the sub
 my %need_format= map { $_ => 1 } ( qw( atop diacritical id lparen matrix rparen sn ), keys %large);
@@ -602,22 +652,25 @@ sub apply_format
                                      } 
     math_variant( $e[0], $format); 
 
-    # positioning, wrap in mpadded
-    my $padding_atts;
-    if( my $bspace  = $format->{b})  { $padding_atts->{voffset} = m_to_pt( $bspace ); }
-    if( my $lspace  = $format->{l})  { $padding_atts->{lspace}  = m_to_pt( $lspace ); }
-    if( my $rspace  = $format->{r})  { $padding_atts->{width}   = m_to_pt( $rspace);  }
-    # x and y are kerning, but seem to be used for spacing 
-    # todo: experiment with style="letter-spacing:$rspace" for x and maybe style/padding for both
-    if( my $xkern  = $format->{r})   { $padding_atts->{width}   = m_to_pt( $xkern);   }
-    if( my $ykern  = $format->{y})   { $padding_atts->{height}  = m_to_pt( $ykern);   } # probably wrong, may need to be height
-    if( $padding_atts)
-      { # warn "padding!\n";
-        foreach my $att ( keys %$padding_atts) 
-          { if( $padding_atts->{$att} eq "+0pt") { delete $padding_atts->{$att}; } # remove padding that turns out to be 0
+    # only apply fine-grained positioning formats if opt{F} on
+    if( $::opt{F})
+      { # positioning, wrap in mpadded
+        my $padding_atts;
+        if( my $bspace  = $format->{b})  { $padding_atts->{voffset} = m_to_pt( $bspace ); }
+        if( my $lspace  = $format->{l})  { $padding_atts->{lspace}  = m_to_pt( $lspace ); }
+        if( my $rspace  = $format->{r})  { $padding_atts->{width}   = m_to_pt( $rspace);  }
+        # x and y are kerning, but seem to be used for spacing 
+        # todo: experiment with style="letter-spacing:$rspace" for x and maybe style/padding for both
+        if( my $xkern  = $format->{r})   { $padding_atts->{width}   = m_to_pt( $xkern);   }
+        if( my $ykern  = $format->{y})   { $padding_atts->{height}  = m_to_pt( $ykern);   } 
+        if( $padding_atts)
+          { # warn "padding!\n";
+            foreach my $att ( keys %$padding_atts) 
+              { if( $padding_atts->{$att} eq "+0pt") { delete $padding_atts->{$att}; } # remove padding that turns out to be 0
+              }
+            if( keys %$padding_atts)
+              { $e[0] = mpadded( $padding_atts, $e[0]); }
           }
-        if( keys %$padding_atts)
-          { $e[0] = mpadded( $padding_atts, $e[0]); }
       }
 
     
@@ -721,6 +774,9 @@ sub dump_item { warn "parsed: ", dump_item_array( @{$_[0]}), "\n"
 sub dump_item_array   { return join( ', ', map { UNIVERSAL::isa( $_, 'pelt') ? "[elt (" . $_->tag . ")]" : "[$_]" } flatten( @_)); }
 sub dump_item_hash    { my %i= @_; return join( ', ', map { "$_ => " . dump_item_array( $i{$_}) } sort keys %i); }
 
+sub dump_items      { return join( "\n====\n", map { UNIVERSAL::isa( $_, 'pelt') ? "[elt (" . $_->_dump( { depth => 2 }) . ")]\n" : "[$_]\n" } flatten( @_)); }
+
+
 }
 
 # the grammar itself 
@@ -812,29 +868,43 @@ foreach my $file (@ARGV)
 
     if( $opt{v}) { warn "processing $file\n"; }
 
-    if( !$opt{n})
-      { my $mif= slurp( $file);
-        $mif= clean_up_mif( $mif);
-        warn "mif: $mif\n" if $opt{v};
-        if( ! $mif) 
-          { if( $opt{v}) { warn "$file not an equation, skipping.\n"; }
-            next;
-          }
-        my $mml_content= $parser->exp( $mif);
-        if( ! $mml_content)
-          { my $warning= "could not parse mif\n";
-            if( $opt{s}) { die  $warning; }
-            else         { warn $warning; }
-            next;
-          }
-        my $comment = $opt{C} ? "\n<!-- $opt{C} -->" : "";
-        my $root= pelt->new( math => { xmlns => "http://www.w3.org/1998/Math/MathML", mathbackground => "transparent",  displaystyle => "true" }, $mml_content);
-        my $mml= ptwig->new->set_root( $root);
-        $mml= clean_up_mml( $mml);
-        spit( filename( mml => $file), $mml);
-        if( $opt{v}) { warn "mml in ", filename( mml => $file), "\n"; } 
+    my $mif= slurp( $file);
+    $mif= clean_up_mif( $mif);
+    warn "mif: $mif\n" if $opt{v};
+    if( ! $mif) 
+      { if( $opt{v}) { warn "$file not an equation, skipping.\n"; }
+        next;
+      }
+    my $mml_content= $parser->exp( $mif);
+    if( ! $mml_content)
+      { my $warning= "could not parse mif\n";
+        if( $opt{s}) { die  $warning; }
+        else         { warn $warning; }
+        next;
       }
 
+    if( ref $mml_content eq 'ARRAY')
+      { # case where the entire expression results in more than 1 element
+        # I have seen this when the top frame statement has a*v* format that generates an extra mspace
+        # so let's special case this
+
+        my @mml= @$mml_content;
+
+        # remove leading or trailing mspace (this should be enough to get back to a single element)
+        if( $mml[0]->is( 'mspace'))  { shift @mml; }
+        if( $mml[-1]->is( 'mspace')) { pop   @mml; }
+
+        if( @mml == 1) { $mml_content= shift @mml; }
+        else           { $mml_content= pelt->new( mrow => @mml); }
+      }
+        
+    my $root= pelt->new( math => { xmlns => "http://www.w3.org/1998/Math/MathML", mathbackground => "transparent",  displaystyle => "true" }, $mml_content);
+    my $mml= ptwig->new( pretty_print => $opt{i} || 'indented')->set_root( $root);
+    if( $opt{C}) { $root->first_child->set_extra_data( "<!-- $opt{C} -->\n") if $root->first_child; }
+
+    #$mml= clean_up_mml( $mml);
+    $mml->print_to_file( filename( mml => $file));
+    if( $opt{v}) { warn "mml in ", filename( mml => $file), "\n"; } 
   }
 
 sub clean_up_mif
@@ -875,7 +945,7 @@ sub clean_up_mml
                                               #mfenced => \&tmfenced,
                                               # mtext   => \&tmtext,
                                              'mtr[@class="align_on_equal"]' => \&mtr_atop,
-                                             'mspace[@class="list"]' => sub { if( $_->in( 'mtd')) { $_->delete; } $_->del_att( 'class'); },
+                                             #'mspace[@class="list"]' => sub { if( $_->in( 'mtd')) { $_->delete; } $_->del_att( 'class'); },
      
                                             },
                            pretty_print => $opt{i} || 'indented',
@@ -1022,6 +1092,11 @@ __END__
   -c  only converts if the MathML file (.mml) does not exist already
 
   -C  comment, to add to the beginning of the file
+
+  -F  formating, uses formating-specific Frame info (padding, spacing...)
+      this usually leads to extra mark-up, like <mpadded> elements, but
+      lower quality results (MathML renderers do a good job on their own,
+      the additional formating interferes with it)
 
   -v verbose
 
