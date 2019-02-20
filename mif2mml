@@ -195,7 +195,7 @@ my %pre_op= ( angle => '∠', box => '□', boxdot => '□⋅',
 my %wrap = ( abs   => [ '|', '|' ], bra    => [ '‹', '|' ],
              ceil  => [ '⌈', '⌉' ], dangle => [ '<', '>' ],
              floor => [ '⌊', '⌋' ], ket    => [ '|', '›' ], 
-             norm  => [ '‖'. '‖' ],                             # (sometimes!) appears as 1 bar in my editor, should be 2, alt: ∥ 
+             norm  => [ '‖', '‖' ],                             # (sometimes!) appears as 1 bar in my editor, should be 2, alt: ∥ 
            );
 
 # these nodes are displayed as the content, followed by a suffix
@@ -220,6 +220,8 @@ my %is_comp = map { $nary{$_} => 1 } qw( geq greaterthan leq lessthan notequal a
 
 
 my %large=( bigcap => '∩', bigcup => '∪', int => '∫', oint => '∫', prod => '∏', sum => '∑');
+
+my $nbsp= "\N{U+A0}"; # replace spaces in strings and chars by nbsp, so they don't get thrown away by the display engines 
 
 sub atop_aligned
   { my $align= shift; 
@@ -344,11 +346,32 @@ sub none        { return tag( 'none');        }
 sub mprescripts { return tag( 'mprescripts'); }
 
 sub mrow
-  { my %atts;
-    my $mrow= tag( mrow => @_);
-    if( $mrow->has_no_atts && ($mrow->children()==1)  && $mrow->first_child->is( 'mrow|mn|mi'))
-      { return $mrow->first_child;
+  { 
+    my $atts= $_[0] && ref( $_[0]) && ref( $_[0]) eq 'HASH' ? shift : {} ;
+
+    # do some merging, of consecutive strings and empty mo's
+    my @content;
+    foreach my $content (flatten( @_))
+      { if( ! @content) { push @content, $content; next; }
+        my $prev= $content[-1];
+        if( $content->is( 'mtext') && $prev->is( 'mtext')) 
+          { $prev->suffix( ' ' . $content->text); }
+        elsif( $content->is( 'mo') && $content->text eq ' ' && $prev->is( 'mtext'))
+          { $prev->suffix( $nbsp);
+            push @content, $content;
+          }
+        elsif( $prev->is( 'mo') && $prev->text eq ' ')
+          { $content->prefix( $nbsp);
+            pop @content;
+            push @content, $content;
+          }
+        else
+          { push @content, $content; }
       }
+
+    my $mrow= tag( mrow => $atts => @content);
+    if( $mrow->has_no_atts && ($mrow->children()==1)  && $mrow->first_child->is( 'mrow|mn|mi'))
+      { return $mrow->first_child; }
     return $mrow;
   }
      
@@ -594,12 +617,14 @@ sub offset_tweak
   { my( $m, $offset)= @_;
     #warn "processing offset '$offset' for '$m'\n";
     my $points= $offset/65536;
-    if( $points >0)      # boundaries are guessed
+    if( $points > 0)      # boundaries are guessed
       { return mrow( msub( mi(''), $m)); }
     elsif( $points >= -6 && $points <= -2)
       { return mrow( msup( mi(''), $m)); }
     else
-      { warn "cannot process y offset $offset ($points pt)\n"; }
+      { warn "cannot process y offset $offset ($points pt)\n"; 
+        return $m;
+      }
   }
 
 sub parse_format
@@ -806,7 +831,6 @@ node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident
                                                       1;
                                                     }
 string  : 'string' '[' format(?) '"' tstring '"' ']' { my $string= replace_frame_escapes( $item{tstring});
-                                                       my $nbsp= "\N{U+A0}";
                                                        $string=~ s{ }{$nbsp}g;
 
                                                        $return= mtext( $string);
