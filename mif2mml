@@ -14,15 +14,12 @@ getopts( 'cFnvC:Di:', \%opt);
 
 if( $opt{p}) { $opt{s}=1; }
 
-#use XML::Twig;
-import ptwig;
 import pelt;
 
 use Parse::RecDescent;
 #$::RD_HINT=1;
 $::RD_ERRORS = 1;
 #$::RD_TRACE = 1;
-use Unicode::UCD qw(charinfo);
 
 
 # empirically found list of formats found in mif prompt[] with the corresponding character
@@ -31,7 +28,7 @@ use Unicode::UCD qw(charinfo);
 # I am probably missing something there...
 my %prompt= ( '(*s10.00s*)' => '⋮');
 
-my $grammar=<<'G';
+my $grammar=<<'G'; 
 {
 my %ent=
     ( # p 182-184 of the MIF reference Manual
@@ -54,15 +51,15 @@ my %ent=
       topcurly  => '︷', bottomcurly => '︸', 
     );
 
-my %is_ent= map { $_ => 1 } values %ent;     
+my %is_ent= map { $_ => 1 } values %ent; # sometimes we need to know if a character is an entity     
 
 # to replace characters in the symbol font by the real character - from http://www.alanwood.net/demos/symbol.html
-# I have only included greek characters, as they are the only ones I have seen used
+# I have only included greek characters, as they are the only ones I have seen used (local copy in symbol.html)
 my %symbol=
     ( a => 'α', b => 'β', c => 'χ', d => 'δ', e => 'ε', f => 'φ', g => 'γ', h => 'η', i => 'ι', j => 'ϕ', k => 'κ', l => 'Λ',  m => 'μ',
       n => 'ν', o => 'ο', p => 'π', q => 'θ', r => 'ρ', s => 'σ', t => 'τ', u => 'υ', v => 'ϖ', w => 'ω', x => 'ξ', y => 'ψ', z => 'ζ',
       D => 'Δ', F => 'Φ', G => 'Γ', J => 'ϑ', L => 'Λ', P => 'Π', Q => 'Θ', S => 'Σ',  U => 'Υ', V => 'ς', Y => 'Ψ', W => 'Ω', 
-      O => 'Ω', # not sure about that
+      O => 'Ω', 
     );
 # to replace escaped characters in strings or chars
 my %frame_escape=
@@ -115,7 +112,7 @@ my %special=
                          if( $format->{i} == 1) { op( 'E', @_); }
                          else                   { mrow( shift(), mo( '×') , msup( mi(10), shift())); } 
                        },
-    plus        => sub { # if next mo is a -, the + is not used
+    plus        => sub { # if next mo is a -, plusminus or minusplus, the + is not used
                          my @children= shift( @_);
                          foreach my $child ( flatten(@_))
                            { if( ! $child->from_in( qw(minus mp pm)) )
@@ -125,7 +122,6 @@ my %special=
                          return mrow( @children);
                        },
     minus       => sub { u_or_n_nary( '-'      => @_); },
-    #diff        => sub { my $format= shift; my $op= $format->{n} ? '∂' : 'd'; opi( $op, @_); },
     diff        => sub { mrow( moi( 'd'), @_); },
     dagger      => sub { return msup( @_, mo( $ent{dagger})); },
     grad        => sub { if( @_ == 1) { pre_op( '∇', @_); }
@@ -149,13 +145,7 @@ my %special=
                           else            { msubsup( shift(), mo( '|'), @_); }
                         },
     list  => sub { return mrow( @_); },
-
-    # seems to be used instead of subsup: the expression, then atop for the sub and sup
-    # so with 2 attributes we make it an mfrac, with more a 1-column matrix
-    atop        => sub { #if( @_ == 2) 
-                         #  { mfrac( { linethickness => 0 }, @_); }
-                         #else
-                         my $format= shift;
+    atop        => sub { my $format= shift;
                          my $align= exists $format->{j} &&  $format->{j} == 0 ? 'center'
                                   : $format->{j} == 1                         ? 'left'
                                   : $format->{j} == 2                         ? 'right'
@@ -164,12 +154,11 @@ my %special=
                          if( $format->{j} < 3)
                            { $mtable= mtable( { columnalign => $align }, map { mtr( mtd($_)) } @_); }
                          else
-                           { $mtable= atop_aligned( $align, @_); }
+                           { $mtable= atop_aligned( $align, @_); } # j3j means "align on equal" 
 
                          return $mtable;
                        },
   );
-
 
 # p 186-194 of the MIF reference Manual
 
@@ -195,7 +184,7 @@ my %pre_op= ( angle => '∠', box => '□', boxdot => '□⋅',
 my %wrap = ( abs   => [ '|', '|' ], bra    => [ '‹', '|' ],
              ceil  => [ '⌈', '⌉' ], dangle => [ '<', '>' ],
              floor => [ '⌊', '⌋' ], ket    => [ '|', '›' ], 
-             norm  => [ '‖', '‖' ],                             # (sometimes!) appears as 1 bar in my editor, should be 2, alt: ∥ 
+             norm  => [ '‖', '‖' ],                             # (sometimes!) appears as 1 bar in my editor, should be 2
            );
 
 # these nodes are displayed as the content, followed by a suffix
@@ -223,6 +212,13 @@ my %large=( bigcap => '∩', bigcup => '∪', int => '∫', oint => '∫', prod 
 
 my $nbsp= "\N{U+A0}"; # replace spaces in strings and chars by nbsp, so they don't get thrown away by the display engines 
 
+# receives a list of mrows, that should be aligned using an mtable (MathML choice, not mine!)
+
+# example         [col1]                          [col2]      [col3]
+#         <mrow>  <mi>a</mi>                      <mo>=</mo>  <mn>1</mn>  </mrow>   # regular line, with '='
+#         <mrow>  <mi>a</mi><mo>+</mo><mi>b</mi>  <mo>=</mo>  <mn>0</mn>  </mrow>   # an other one
+#         <mrow>                                              <mi>c</mi>  </mrow>   # this one does not have the '='
+
 sub atop_aligned
   { my $align= shift; 
     #warn "atop with j3j format, content: ", dump_items( @_), "\n";
@@ -237,6 +233,7 @@ sub atop_aligned
                 $child->cut;
                 # the operator to align on is he first comparison <mo>
                 # this is NOT the right way to do this, the <mo> should be found through parsing, not its text
+                # TODO: use the #from from the mo to see if it's a comparison operator
                 if( $child->is( 'mo') && ! $mo && $is_comp{$child->text})
                   { $mo= $child; $child; }
                 elsif( $mo)
@@ -263,10 +260,8 @@ sub atop_aligned
     return $mtable;
   }
 
-
-# those nodes require the format, it will be passed as the first argument to the sub
-my %need_format= map { $_ => 1 } ( qw( atop diacritical id lparen matrix rparen sn ), keys %large);
-
+# TODO: it looks like the MathML implementors would prefer not to have to deal with mfenced, but replace it
+# with stretchy mo's (at least the browser guys) so either go with that or give the user the choice 
 sub wrap
   { my( $open, $close, $exp)= @_;
     #warn "wrap: open: '$open' - close: '$close' - exp: '$exp'\nreturned: ",  mrow( mo( $open), $exp, mo( $close)), "\n";
@@ -285,6 +280,13 @@ sub post_op
   }
 
 
+# those nodes require the format, it will be passed as the first argument to the sub
+# TODO: this smells, I think the proper way would be to pass around objects that hold
+# a list of XML elements, the format and maybe other info (from?) instead of the current
+# way of passing elements (usually one but sometimes more, and the format only when needed) 
+my %need_format= map { $_ => 1 } ( qw( atop diacritical id lparen matrix rparen sn ), keys %large);
+
+# now we generate the big dispatcher, from specials and the various categories of nodes
 sub init_node_dispatcher
   { my $dp={ %special};
     foreach my $node (@lit)                   { $dp->{$node}= sub { mrow( mo( $node), shift()); }; }
@@ -295,7 +297,6 @@ sub init_node_dispatcher
     while( my( $node, $symbol)= each %large)  { $dp->{$node}= sub { sum( $symbol => @_); };        }
     return $dp;
   }
-
 
 my $dp=init_node_dispatcher();
 
@@ -324,12 +325,11 @@ sub tag
       { return pelt->new( $tag => $atts, flatten( @_)); }
     else
       { return pelt->new( $tag => $atts)->set_empty( 1); }
-    #return join '', "<$tag$atts>", @_, "</$tag>"; 
   } 
 
 
 sub op  { my $op= shift; return mrow(shift, map { (mo($op), $_) }  @_);  }
-sub opi { my $op= shift; return mrow(shift, map { (moi($op), $_) } @_); }
+#sub opi { my $op= shift; return mrow(shift, map { (moi($op), $_) } @_); }
 sub moa { return tag( mo => { accent => 'true' }, @_); }
 sub moi { return tag( mo => { mathvariant => 'italic' }, @_); }
 
@@ -355,7 +355,16 @@ sub mrow
       { if( ! @content) { push @content, $content; next; }
         my $prev= $content[-1];
         if( $content->is( 'mtext') && $prev->is( 'mtext')) 
-          { $prev->suffix( ' ' . $content->text); }
+          { my $ptext= $prev->text;
+            my $ctext= $content->text;
+            # cautiously add a space between the 2 merged mtext
+            # heuristic: add a space unless it looks like the 2 texts should be merged without one
+            # ie one of the border characters is '_', ',' a digit or '-'
+            if( $ptext !~ m{[_,0-9-]$} && $ctext !~ m{^[_,0-9-]})
+              { $prev->suffix( ' ' . $content->text); }
+            else
+              { $prev->suffix( $content->text); }
+          }
         elsif( $content->is( 'mo') && $content->text eq ' ' && $prev->is( 'mtext'))
           { $prev->suffix( $nbsp);
             push @content, $content;
@@ -472,7 +481,11 @@ sub sum
       }
     else
       { $int= mo( $glyph); }
-    return mrow( $int, $content);
+
+    # if there is no format, then take more space (i1i and i2i both imply "use less space")
+    my $displaystyle= $format->{i} ? {} : { displaystyle => 'true' }; 
+
+    return mrow( $displaystyle, $int, $content);
   }
 
 sub indexes
@@ -586,7 +599,7 @@ sub diacritical
                   { $mi->parent->unwrap; }
                 else
                   { $exp= $mi; }
-                warn "inserted [$stroke]\n";
+                warn "inserted [$stroke]\n" if $::opt{v};
               }
           }
       }
@@ -595,7 +608,7 @@ sub diacritical
 
 sub decoration
   { my( $vector, $prime, $dot, $bar, $underscore, $exp)= @_;
-    # for now several decorations on the same expression are not treated specialcased (no munderover for example)
+    # for now several decorations on the same expression are not specialcased (no munderover for example)
     if( $vector==1)     { $exp= mover( { accent => 'true' }, $exp, moa('⇀'));  }
     if( $vector==2)     { $exp= mover( { accent => 'true' }, $exp, moa( '^')); }
     if( $vector==3)     { $exp= mover( { accent => 'true' }, $exp, moa( '~')); }
@@ -632,7 +645,7 @@ sub parse_format
 
     return if ! $format_token || ! $format_token->[0];
 
-    my $format={};
+    my $format={ original => $format_token }; # store the initial string for debugging purposes
 
     my $format_string= $format_token->[0]; # that's where Parse::RecDescent puts the format string
 
@@ -675,7 +688,10 @@ sub apply_format
     if( exists $format->{C})         { if( $format->{C}) { uc_content( @e); }  
                                        else              { lc_content( @e); }
                                      } 
-    math_variant( $e[0], $format); 
+
+    my $mathvariant= mathvariant( $e[0], $format);
+    #warn "mathvariant: $mathvariant\n" if $mathvariant;
+    $e[0]->set_att( mathvariant => $mathvariant) if $mathvariant;
 
     # only apply fine-grained positioning formats if opt{F} on
     if( $::opt{F})
@@ -686,7 +702,7 @@ sub apply_format
         if( my $rspace  = $format->{r})  { $padding_atts->{width}   = m_to_pt( $rspace);  }
         # x and y are kerning, but seem to be used for spacing 
         # todo: experiment with style="letter-spacing:$rspace" for x and maybe style/padding for both
-        if( my $xkern  = $format->{r})   { $padding_atts->{width}   = m_to_pt( $xkern);   }
+        if( my $xkern  = $format->{x})   { $padding_atts->{width}   = m_to_pt( $xkern);   }
         if( my $ykern  = $format->{y})   { $padding_atts->{height}  = m_to_pt( $ykern);   } 
         if( $padding_atts)
           { # warn "padding!\n";
@@ -709,60 +725,78 @@ sub apply_format
     return @e > 1 ? [@e] : $e[0];
   }
 
-sub math_variant
+
+sub mathvariant
   { my( $e, $format)= @_;
-
-    if( ! UNIVERSAL::isa( $e, 'pelt')) 
-      { warn "e is not an elt: [$e] [$e->[0]]\n"; }
-
     my $text           = $e->text_only;
     my $tag            = $e->tag;
     my $special        = $is_ent{$text} ? 1 : 0;
     my $single_char    = $tag eq 'mi' && length $text == 1 && ! $special; # defaults to 'italic'
-    my $single_special = $tag eq 'mi' && length $text == 1 && $special;   # should not be italicized
+    my $special_char   = $tag eq 'mi' && length $text == 1 &&   $special; # not italicized by default
+    my $string         = ! $single_char && ! $special_char;
 
-    #warn "tag: [$tag] text: [$text] special: $special single_char: $single_char single_special: $single_special\n";
+    #warn "tag: [$tag] text: [$text] special: $special single_char: $single_char special_char: $special_char\n  ", dump_format( $format), "\n";
+    #warn " from: ", $e->from, "\n";
 
-    my $mathvariant='';
+    # some generated elements do not need a mathvariant, the format applies to the main element, not them
+    # the call to math variant could be avoided but I found it easier to do it here
+    return if $tag eq 'mo';
 
-    if( $single_char) # 1 char, defaults to italics
-      { if( $format->{W} eq 'Bold' && ! $format->{B})    
-          { $mathvariant= 'bold-italic'; }
-        elsif( $format->{W} eq 'Bold' && $format->{B} eq 'Regular')
-          { $mathvariant= 'bold'; }
-        elsif( ! $format->{W} && $format->{B} eq 'Regular')
-          { $mathvariant= 'normal'; }
-        elsif( $format->{W} || $format->{B})
-          { warn "unknown format for char '$text': ", dump_format( $format); }
-      }
-    elsif( $single_special) # special char, needs to be set to normal if not specifically in italics
-      { if( ! $format->{W} && ! $format->{B})
-          { $mathvariant= 'normal'; }
-        elsif( $format->{W} eq 'Bold' && ! $format->{B})    
-          { $mathvariant= 'bold'; }
-        elsif( ! $format->{W} && $format->{B} eq 'Italic')
-          { $mathvariant= ''; }
-        elsif( $format->{W} eq 'Bold' && $format->{B} eq 'Italic')
-          { $mathvariant= 'bold-italic'; }
-        elsif( $format->{W} || $format->{B})
-          { warn "unknown format for special char '$text': ", dump_format( $format); }
-      }
-    else
-      { if( $format->{W} eq 'Bold' && ! $format->{B})    
-          { $mathvariant= 'bold'; }
-        elsif( ! $format->{W} && $format->{B} eq 'Italic')
-          { $mathvariant= 'italic'; }
-        elsif( $format->{W} eq 'Bold' && $format->{B} eq 'Italic')
-          { $mathvariant= 'bold-italic'; }
-        elsif( $format->{W} || $format->{B})
-          { warn "unknown format for $tag '$text': ", dump_format( $format); }
+    # set the defaults in mif
+    #warn "in $tag, [$text] format->{B}: [$format->{B}]\n";
+    if( $single_char && ! $format->{B}) { $format->{B}= "Italic"; };
 
+    my $font_type = font_type( $format->{f}); # many different. Regular is ''
+    my $bold      = bold(      $format->{W}); # 'bold' or ''
+    my $italic    = italic(    $format->{B}); # 'italic' or ''
+
+    #warn "  font_type: [$font_type] - bold: [$bold] - italic: [$italic]\n";
+
+    # first let's deal with cases that depend on the nature of the string
+    # mif with no format generates italic for single char (not special char) and normal otherwise
+    # mml with no mathvariant generates italics for single char (including special char) and normal otherwise
+    # so with no font_type or bold we have to adjust this
+    if( ! $font_type && ! $bold)     
+      { if( ($single_char || $special_char) && ! $italic)
+          { return 'normal' }
+        elsif(    ( $single_char  &&   $italic)
+               || ( $special_char &&   $italic)  # mif special char + italic is mml default
+               || ( $string       && ! $italic)
+             )
+          { return ''; }
       }
 
-    $e->set_att( mathvariant => $mathvariant) if $mathvariant;
-    return;
+    # now we don't care about the type of character anymore 
+
+    # the rules for building the mathvariant value are weird enough that 
+    # it has to be this giant if/elsif monster
+
+    if( ! $font_type)
+      { if(    $bold && $italic) { return 'bold-italic';   }
+        elsif( $bold)            { return 'bold';          }
+        elsif( $italic )         { return 'italic';        }
+      }
+
+    # these 2 don't allow bold/italic
+    if( $font_type eq 'monospace' || $font_type eq 'double-struck') 
+      { return $font_type; }
+
+    # these 2 only allow bold
+    if( $font_type eq 'fraktur' || $font_type eq 'script') 
+      { if( $bold) 
+          { return join '-', 'bold', $font_type; }
+        else
+          { return $font_type; }
+      }
+
+    # and this one allows bold and italic but the naming is all verkakte
+    if( $font_type eq 'sans-serif')
+      { if( $bold && $italic) { return 'sans-serif-bold-italic'; }
+        elsif( $bold)         { return 'bold-sans-serif';        }
+        elsif( $italic  )     { return 'sans-serif-italic';      }
+        else                  { return 'sans-serif';             }
+      }
   }
-
 
 sub uc_content
   { foreach my $e ( @_)
@@ -787,19 +821,39 @@ sub replace_frame_escapes
     return $s;
   }
 
+# heuristic at work!
+# we have to try to assign the font to one of the MathML supported type, regular, sans-serif, script, double-struck, fraktur, monospace
+# for now we do this based on a heuristic on the name of the font 
+# we can't be sure the font even exists on the machine doing the conversion
+# we could use a table that would do this. I haven't had to do this so far
+sub font_type
+  { my $font= shift || '';
+   
+    if(    $font=~ m{courier|mono}i)                 { return 'monospace';     }
+    elsif( $font=~ m{(arial|verdana|sans)}i)         { return 'sans-serif';    }
+    elsif( $font=~ m{(euf[mb]|frak|got(hic|ik))}i)   { return 'fraktur';       }
+    elsif( $font=~ m{(eus[mb]|script)}i)             { return 'script';        }
+    elsif( $font=~ m{(msbm)}i)                       { return 'double-struck'; }
+    else                                             { return '';              } # regular is the empty string
+  }
+
+sub bold
+  { my $weight= shift || '';
+    if( $weight eq 'Bold' or $weight eq 'Medium') { return 'bold'; }
+    else { return ''; }
+  }
+
+sub italic
+  { my $angle= shift || '';
+    if( $angle eq 'Italic' or $angle eq 'Obliqued') { return 'italic'; }
+    else { return ''; }
+  }
 
 sub flatten { map { ref $_ eq 'ARRAY' ? flatten(@$_) : $_ } @_ }
 
-sub dump_format { my $format=shift; return join ', ', map { "$_=[$format->{$_}]" } sort keys %$format; }
-
-sub dump_item { warn "parsed: ", dump_item_array( @{$_[0]}), "\n"
-              #     . "        ", dump_item_hash( %{$_[1]}), "\n"
-                ; 
-              }
-sub dump_item_array   { return join( ', ', map { UNIVERSAL::isa( $_, 'pelt') ? "[elt (" . $_->tag . ")]" : "[$_]" } flatten( @_)); }
-sub dump_item_hash    { my %i= @_; return join( ', ', map { "$_ => " . dump_item_array( $i{$_}) } sort keys %i); }
-
-sub dump_items      { return join( "\n====\n", map { UNIVERSAL::isa( $_, 'pelt') ? "[elt (" . $_->_dump( { depth => 2 }) . ")]\n" : "[$_]\n" } flatten( @_)); }
+# a couple of dump subs used in debugging
+sub dump_format { my $format=shift; return "[$format->{original}] => ", join ', ', map { "$_=[$format->{$_}]" } sort keys %$format; }
+sub dump_items  { return join( "\n====\n", map { UNIVERSAL::isa( $_, 'pelt') ? "[elt (" . $_->_dump( { depth => 2 }) . ")]\n" : "[$_]\n" } flatten( @_)); }
 
 
 }
@@ -812,7 +866,6 @@ node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident
                                                       my $node= $dp->{$node_type};
                                                       if( !$node) { warn "unknown node type: $item{ident}\n"; }
                                                       # warn "node: $item{ident}\n";
-                                                      
 
                                                       my $format= parse_format( $item{'format(?)'});
 
@@ -825,7 +878,6 @@ node : ident '[' format(?) exp(s /,/) ']'           { my $node_type= $item{ident
                                                       
                                                       foreach my $r (flatten( $return)) { $r->set_from( $node_type); }
 
-                                                      # should be OK, needs testing though
                                                       $return= apply_format( $format, $return); 
                                                      
                                                       1;
@@ -850,12 +902,10 @@ char    : /(char|dummy)/ '[' format(?) tchar  ']'     { $return= $item{tchar};
 
                                                         my $format= parse_format( $item{'format(?)'});
 
+                                                        # this could probably be done in apply_format
                                                         if( my $font= $format->{f})           
-                                                          { # TODO
-                                                            if( $font eq 'Symbol') # replace the character
+                                                          { if( $font eq 'Symbol') # replace the character
                                                               { $return->set_text( join '', map { $symbol{$_} || $_ } split //, $return->text); }
-                                                            else
-                                                              { $return->set_att( fontfamily => $font); }
                                                           }
 
                                                         $return= apply_format( $format, $return);
@@ -867,7 +917,7 @@ char    : /(char|dummy)/ '[' format(?) tchar  ']'     { $return= $item{tchar};
                                                           { # warn "before applying format ", dump_format( $format), "to [", $e->sprint, "]\n";
                                                             my $tmp= $e->insert_new_elt( after=> 'tmp');
                                                             $e->cut;
-                                                            $e= apply_format( $format, $e);
+                                                            $e= apply_format( $format, $e); # apply_format can return either a single element or (rarely) an arrayref of elements
                                                             foreach my $ne (flatten( $e))
                                                               { $ne->move( before => $tmp); }
                                                             $tmp->cut;
@@ -881,7 +931,8 @@ tnum    : /[+-]?\d+\.\d+/   { $return= $item[1]; 1; }
 tchar   : /[^\]]*/          { $return= single_char( $item[1]);   1; }
 ind     : /\d+/             { $return= $item[1]; 1; } # a simple number, used for indices, matrix dimensions...
 format  : '(*' /[^*]*/ '*)' { $return= $item[2]; 1; }
-tstring : <skip:"">/[^"]*/<skip:$item[1]>           { $return= $item[2]; 1; } # need to change skip so we don't skip over whitespaces
+tstring : <skip:"">/[^"]*/<skip:$item[1]>           { $return= $item[2]; 1; } # need to change skip so we don't skip over whitespaces 
+                                                                              # so vim syntax highlighter doesn't get confused: "
 G
 
 my $parser = Parse::RecDescent->new( $grammar) or die "Bad grammar!\n";
@@ -909,8 +960,8 @@ foreach my $file (@ARGV)
 
     if( ref $mml_content eq 'ARRAY')
       { # case where the entire expression results in more than 1 element
-        # I have seen this when the top frame statement has a*v* format that generates an extra mspace
-        # so let's special case this
+        # I have seen this when the top frame statement has a *v* format that generates an extra mspace
+        # so let's special case this here, since we can't know about it insode the parser
 
         my @mml= @$mml_content;
 
@@ -919,25 +970,28 @@ foreach my $file (@ARGV)
         if( $mml[-1]->is( 'mspace')) { pop   @mml; }
 
         if( @mml == 1) { $mml_content= shift @mml; }
-        else           { $mml_content= pelt->new( mrow => @mml); }
+        else           { $mml_content= pelt->new( mrow => @mml); } # but if we still have more than 1 element, wrap in mrow
       }
         
     my $root= pelt->new( math => { xmlns => "http://www.w3.org/1998/Math/MathML", mathbackground => "transparent",  displaystyle => "true" }, $mml_content);
-    my $mml= ptwig->new( pretty_print => $opt{i} || 'indented')->set_root( $root);
+    my $mml= XML::Twig->new( pretty_print => $opt{i} || 'indented')->set_root( $root);
+
+    # add the comment if needed
     if( $opt{C}) { $root->first_child->set_extra_data( "<!-- $opt{C} -->\n") if $root->first_child; }
 
-    #$mml= clean_up_mml( $mml);
     $mml->print_to_file( filename( mml => $file));
     if( $opt{v}) { warn "mml in ", filename( mml => $file), "\n"; } 
   }
 
+# extract just the equation from the whole file (it can include all sorts of FrameMaker context)
 sub clean_up_mif
   { my( $mif)= @_;
     my $clean_mif= $mif;
     if( $mif=~ m{<MathFullForm `([^']*)'\s*> # end of MathFullForm})
       { $clean_mif= $1; }
 
-    $clean_mif=~ s{[\r\n]}{}g;
+    $clean_mif=~ s{[\r\n]}{}g; # deal with files from various OSs by throwing away all (useless!) line returns
+    # TODO: this may not be the right place to do this
     $clean_mif=~ s{prompt\[\s*(\([^)]*\))?\s*\]}{'char[' . ( $1 && $prompt{$1} ? $prompt{$1} : ' ') . ']'}eg; # hack, replace prompt by ' ' or '⋮'
 
     return $clean_mif;
@@ -951,131 +1005,27 @@ sub slurp
     return $content;
   }
 
-sub spit
-  { my $file= shift;
-    open( my $out, '>:utf8', $file) or die "cannot create file '$file': $!\n";
-    print {$out} @_;
-  }
-
 sub filename
   { my( $ext, $file)= @_;
     $file=~ s{\.[^.]+$}{.$ext};
     return $file;
   }
 
-sub clean_up_mml
-  { my( $mml)= @_;
-    my $t= XML::Twig->new( twig_handlers => { #mrow    => \&tmrow,
-                                              #mfenced => \&tmfenced,
-                                              # mtext   => \&tmtext,
-                                             'mtr[@class="align_on_equal"]' => \&mtr_atop,
-                                             #'mspace[@class="list"]' => sub { if( $_->in( 'mtd')) { $_->delete; } $_->del_att( 'class'); },
-     
-                                            },
-                           pretty_print => $opt{i} || 'indented',
-                           elt_class => 'pelt', 
-                           error_context => 1,
-                         )
-         ->parse( $mml->sprint);
-    return $t->sprint;
-  }
 
-
-sub mtr_atop
-  { my( $t, $mtr)= @_; 
-    #warn "align_on_equal found\n"; 
-    return;
-    if( $mtr->contains_a_single( 'mrow'))
-      { my $mrow= $mtr->first_child( 'mrow');
-        foreach my $child ( $mrow->children)
-          { if( $child->text ne '=' && $child->prev_sibling && $child->prev_sibling->text ne '=')
-              { $child->move( last_child => $child->prev_sibling); }
-            else
-              { $child->wrap_in( 'mtd'); }
-          }
-         $mrow->erase;
-      }
-    else
-      { warn "atop mtr contains more than 1 mrow\n"; }
-    #$mtr->del_att( 'class');
-  }
-
-package ptwig;
-use base 'XML::Twig';
-
-sub new
-  { my $t= shift;
-    return bless $t->SUPER::new( elt_class => 'pelt', @_);
-  }
-
-1;
-
+# the elements that are built are XML::Twig::Elt
+# I just add a few convenience methods here
 package pelt;
+use XML::Twig;
 use base 'XML::Twig::Elt';
-
-my $prop_unit;
-
-BEGIN
-  { $prop_unit= { map { $_ => 'pt' } (qw( width height depth)) };
-  }
 
 sub new
   { my $t= shift;
     return bless $t->SUPER::new( @_);
   }
 
-# style methods
-# style is a hash prop => value stored in the attribute '#style'
-# when the style is changed, the attribute 'style' is updated (for output)
-# prop is a style property
-# they can be retrieved, set or added to (for metrics)
-# some numeric props have a unit, the numeric value is stored in '#style', 
-#   the unit added to 'style' (so we can do math on the prop in '#style')
-# props can be named "Perl style" (with '_' instead of '-', eg padding_left)
-
-sub style
-  { my( $elt)= @_;
-    return $elt->att( '#style') || {};
-  }
-    
-sub set_style
-  { my $elt= shift;
-    my $style = shift;
-    $elt->set_att( '#style' => $style);
-    my $style_att= _format_style( $style);
-    $elt->set_att( 'style'  => $style_att) if $style_att;
-    return $elt;
-  }
-
-sub prop
-  { my( $elt, $prop)= @_;
-    $prop=~ s{_}{-}g;
-    $prop= $elt->style->{$prop} || '';
-  }
-
-sub set_prop
-  { my( $elt, $prop, $value)= @_;
-    $prop=~ s{_}{-}g;
-    my $style= $elt->att( '#style') || {};
-    $style->{$prop} = $value;
-    my $style_att= _format_style( $style);
-    $elt->set_att( 'style'  => $style_att) if $style_att;
-  }    
-
-sub add_to_prop
-  { my( $elt, $prop, $value)= @_;
-    my $initial_value = $elt->prop( $prop) || 0;
-    $elt->set_prop( $initial_value + $value);
-  } 
-
-sub _format_style
-  { my( $style)= @_;
-
-    return join ( '; ', map { "$_: $style->{$_}" . ( $prop_unit->{$_} || '') } grep { $style->{$_} } sort keys %$style);
-  }
-
-
 # return the value of a format (if the code argument is given), or the entire format hash
+# if in debugging mode (-D option used) the data-format attribute is set on the element
+# to help figure out what's going on
 sub format
   { my( $elt, $code)= @_;
     my $format= $elt->att( '#format') || {};
@@ -1089,18 +1039,26 @@ sub set_format
     return $elt->set_att( '#format' => $format);
   }
 
+# tracks which mif statement generated the element
 sub from     
   { return $_[0]->att( '#from'); }
+
+# if in debugging mode (-D option used) the data-from attribute is set on the element
+sub set_from 
+  { my( $elt, $from)= @_;
+    $elt->set_att( 'data-from', $from) if $::opt{D}; 
+    return $elt->set_att( '#from', $from); 
+  }
+
+# returns the element if it was created from any of the statements passed in arguments
+# false otherwise
+# used to pass info up in the parsing process (some statement should generate different
+# output depending on the context, which is not available while they're being parsed)
 sub from_in
   { my $elt= shift;
     foreach my $from (@_)
       { if( $elt->from && $elt->from eq $from) { return $elt; } }
     return 0;
-  }
-sub set_from 
-  { my( $elt, $from)= @_;
-    $elt->set_att( 'data-from', $from) if $::opt{D}; 
-    return $elt->set_att( '#from', $from); 
   }
 
 1;
