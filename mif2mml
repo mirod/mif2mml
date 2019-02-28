@@ -142,7 +142,7 @@ my %special=
                        },
     substitution => sub { if(    @_ == 1) { post_op( shift(), '|'); }
                           elsif( @_ == 2) { msub( mrow( shift(), mo( '|')), shift()); }
-                          else            { msubsup( shift(), mo( '|'), @_); }
+                          else            { msubsup( mrow( shift(), mo( '|')), @_); }
                         },
     list  => sub { return mrow( @_); },
     atop        => sub { my $format= shift;
@@ -163,7 +163,7 @@ my %special=
 # p 186-194 of the MIF reference Manual
 
 # these nodes are displayed as the name of the node followed by the content
-my @lit= qw( acos acosh acot acoth acsc acsch arg asec asech asin atan atanh
+my @lit= qw( acos acosh acot acoth acsc acsch arg asec asech asin asinh atan atanh
              cos cosh cot coth csc csch exp imag ln real sec sech sgn sin sinh
              tan tanh
             );
@@ -927,7 +927,7 @@ char    : /(char|dummy)/ '[' format(?) tchar  ']'     { $return= $item{tchar};
                                                         1;
                                                       }
 ident   : /\w+/             { $return= $item[1]; 1; }
-tnum    : /[+-]?\d+\.\d+/   { $return= $item[1]; 1; }
+tnum    : /[+-]?\d+(\.\d+)?/   { $return= $item[1]; 1; }
 tchar   : /[^\]]*/          { $return= single_char( $item[1]);   1; }
 ind     : /\d+/             { $return= $item[1]; 1; } # a simple number, used for indices, matrix dimensions...
 format  : '(*' /[^*]*/ '*)' { $return= $item[2]; 1; }
