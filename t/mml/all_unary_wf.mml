@@ -1,0 +1,67 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Unary with format</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary id</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mtext> format i1i </mtext>
+            <mfenced close="]" open="[" separators="">
+              <mi>x</mi>
+            </mfenced>
+            <mtext> format i2i </mtext>
+            <mfenced close="}" open="{" separators="">
+              <mi>x</mi>
+            </mfenced>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary lparen</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mtext> format i1i </mtext>
+            <mrow>
+              <mo>[</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> format i2i </mtext>
+            <mrow>
+              <mo>{</mo>
+              <mi>x</mi>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary rparen</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mtext> format i1i </mtext>
+            <mrow>
+              <mi>x</mi>
+              <mo>]</mo>
+            </mrow>
+            <mtext> format i2i </mtext>
+            <mrow>
+              <mi>x</mi>
+              <mo>}</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

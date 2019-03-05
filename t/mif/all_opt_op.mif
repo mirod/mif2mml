@@ -1,0 +1,10 @@
+<MathFullForm `
+atop[
+  string[(*WBoldW*)"Optional op"],equal[string["op grad"], list[grad[char[x]],string[(*BItalicB*)" or "],grad[char[x],char[y]],string[(*BItalicB*)" or "],grad[num[1,"1"]],string[(*BItalicB*)" or "],grad[num[1,"1"],num[2,"2"]]]],
+  equal[string["op log"], list[log[char[x]],string[(*BItalicB*)" or "],log[char[x],char[y]],string[(*BItalicB*)" or "],log[num[1,"1"]],string[(*BItalicB*)" or "],log[num[1,"1"],num[2,"2"]]]],
+  equal[string["op oppartial"], list[oppartial[char[x]],string[(*BItalicB*)" or "],oppartial[char[x],char[y]],string[(*BItalicB*)" or "],oppartial[num[1,"1"]],string[(*BItalicB*)" or "],oppartial[num[1,"1"],num[2,"2"]]]],
+  equal[string["op optotal"], list[optotal[char[x]],string[(*BItalicB*)" or "],optotal[char[x],char[y]],string[(*BItalicB*)" or "],optotal[num[1,"1"]],string[(*BItalicB*)" or "],optotal[num[1,"1"],num[2,"2"]]]],
+  equal[string["op sqrt"], list[sqrt[char[x]],string[(*BItalicB*)" or "],sqrt[char[x],char[y]],string[(*BItalicB*)" or "],sqrt[num[1,"1"]],string[(*BItalicB*)" or "],sqrt[num[1,"1"],num[2,"2"]]]],
+  equal[string["op substitution"], list[substitution[char[x]],string[(*BItalicB*)" or "],substitution[char[x],char[y]],string[(*BItalicB*)" or "],substitution[num[1,"1"]],string[(*BItalicB*)" or "],substitution[num[1,"1"],num[2,"2"]]]],
+  equal[string["3 args substitution"], substitution[char[a],char[b],char[c]]]]
+'> # end of MathFullForm

@@ -1,0 +1,360 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Symbol Font</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for a</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">α</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for b</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">β</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for c</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">χ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for d</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">δ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for e</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ε</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for f</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for g</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for h</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">η</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for i</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ι</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for j</mtext>
+          <mo>=</mo>
+          <mi>ϕ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for k</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">κ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for l</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for m</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">μ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for n</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ν</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for o</mtext>
+          <mo>=</mo>
+          <mi>ο</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for p</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for q</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for r</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ρ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for s</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for t</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">τ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for u</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for v</mtext>
+          <mo>=</mo>
+          <mi>ϖ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for w</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for x</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ξ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for y</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for z</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ζ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for D</mtext>
+          <mo>=</mo>
+          <mi>Δ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for F</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for G</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for J</mtext>
+          <mo>=</mo>
+          <mi>ϑ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for L</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for P</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for Q</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for S</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for U</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for V</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ς</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for Y</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for W</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>Symbol for O</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

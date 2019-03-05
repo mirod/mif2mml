@@ -1,0 +1,765 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Entities</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[aleph]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">א</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[alpha]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">α</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[beta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">β</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[bot]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⊥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[chi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">χ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[cpartial]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∂</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[degree]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">°</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[delta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">δ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Delta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∆</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[emptyset]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∅</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[epsilon]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ε</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[eta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">η</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[gamma]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Gamma]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Im]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">𝔍</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[infty]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∞</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[iota]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ι</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[kappa]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">κ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[lambda]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Lambda]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[ldots]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">…</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[mu]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">μ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[nabla]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∇</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[nu]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ν</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[omega]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Omega]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[phi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Phi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[pi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Pi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[pprime]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">″</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[prime]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">′</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[psi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Psi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Re]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ℜ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[rho]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ρ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[sigma]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Sigma]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[tau]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">τ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[theta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Theta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[upsilon]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Upsilon]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[varphi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[varpi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[varsigma]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ς</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[vartheta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[wp]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">℘</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[xi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ξ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[Xi]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ξ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[zeta]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ζ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[leq]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≤</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[geq]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[lessthan]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">&lt;</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[notequal]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≠</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[greaterthan]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">></mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[infty]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∞</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[rarr]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">→</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[caret]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‸</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[tprime]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‴</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[rabracket]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">›</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[labracket]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‹</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[tie]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⁀</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[overline]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‾</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[dagger]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">†</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[geq]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[leq]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≤</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[sum]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∑</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[int]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∫</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[dot]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⋅</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[twodots]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[ellip]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">…</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[box]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">□</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[angle]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∠</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[bullet]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">•</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[times]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⨉</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[exists]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∃</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[forall]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∀</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[minusplus]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∓</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[plusminus]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">±</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[neg]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">¬</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[therefore]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∴</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[topcurly]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">︷</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char[bottomcurly]</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">︸</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

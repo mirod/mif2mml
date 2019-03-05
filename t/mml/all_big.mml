@@ -1,0 +1,525 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>big ops</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op bigcap</mtext>
+          <mo>=</mo>
+          <mtable columnalign="left">
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mrow displaystyle="true">
+                    <mo>∩</mo>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munder>
+                      <mrow>
+                        <mo>∩</mo>
+                      </mrow>
+                      <mi>y</mi>
+                    </munder>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munderover>
+                      <mrow>
+                        <mo>∩</mo>
+                      </mrow>
+                      <mi>b</mi>
+                      <mi>c</mi>
+                    </munderover>
+                    <mi>a</mi>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mtext> format i1i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∩</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder>
+                        <mo>∩</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∩</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+          </mtable>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op bigcup</mtext>
+          <mo>=</mo>
+          <mtable columnalign="left">
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mrow displaystyle="true">
+                    <mo>∪</mo>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munder>
+                      <mrow>
+                        <mo>∪</mo>
+                      </mrow>
+                      <mi>y</mi>
+                    </munder>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munderover>
+                      <mrow>
+                        <mo>∪</mo>
+                      </mrow>
+                      <mi>b</mi>
+                      <mi>c</mi>
+                    </munderover>
+                    <mi>a</mi>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mtext> format i1i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∪</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder>
+                        <mo>∪</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∪</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+          </mtable>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op oint</mtext>
+          <mo>=</mo>
+          <mtable columnalign="left">
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mrow displaystyle="true">
+                    <mo>∫</mo>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munder>
+                      <mrow>
+                        <mo>∫</mo>
+                      </mrow>
+                      <mi>y</mi>
+                    </munder>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munderover>
+                      <mrow>
+                        <mo>∫</mo>
+                      </mrow>
+                      <mi>b</mi>
+                      <mi>c</mi>
+                    </munderover>
+                    <mi>a</mi>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mtext> format i1i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∫</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder>
+                        <mo>∫</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∫</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+          </mtable>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op int</mtext>
+          <mo>=</mo>
+          <mtable columnalign="left">
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mrow displaystyle="true">
+                    <mo>∫</mo>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munder>
+                      <mrow>
+                        <mo>∫</mo>
+                      </mrow>
+                      <mi>y</mi>
+                    </munder>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munderover>
+                      <mrow>
+                        <mo>∫</mo>
+                      </mrow>
+                      <mi>b</mi>
+                      <mi>c</mi>
+                    </munderover>
+                    <mi>a</mi>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mtext> format i1i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∫</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder>
+                        <mo>∫</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∫</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                  <mtext> format i2i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∫</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder accent="true">
+                        <mo>∫</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∫</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+          </mtable>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op prod</mtext>
+          <mo>=</mo>
+          <mtable columnalign="left">
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mrow displaystyle="true">
+                    <mo>∏</mo>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munder>
+                      <mrow>
+                        <mo>∏</mo>
+                      </mrow>
+                      <mi>y</mi>
+                    </munder>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munderover>
+                      <mrow>
+                        <mo>∏</mo>
+                      </mrow>
+                      <mi>b</mi>
+                      <mi>c</mi>
+                    </munderover>
+                    <mi>a</mi>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mtext> format i1i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∏</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder>
+                        <mo>∏</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∏</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                  <mtext> format i2i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∏</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder accent="true">
+                        <mo>∏</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∏</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+          </mtable>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op sum</mtext>
+          <mo>=</mo>
+          <mtable columnalign="left">
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mrow displaystyle="true">
+                    <mo>∑</mo>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munder>
+                      <mrow>
+                        <mo>∑</mo>
+                      </mrow>
+                      <mi>y</mi>
+                    </munder>
+                    <mi>x</mi>
+                  </mrow>
+                  <mtext> or </mtext>
+                  <mrow displaystyle="true">
+                    <munderover>
+                      <mrow>
+                        <mo>∑</mo>
+                      </mrow>
+                      <mi>b</mi>
+                      <mi>c</mi>
+                    </munderover>
+                    <mi>a</mi>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+            <mtr>
+              <mtd>
+                <mrow>
+                  <mtext> format i1i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∑</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder>
+                        <mo>∑</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∑</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                  <mtext> format i2i </mtext>
+                  <mrow>
+                    <mrow>
+                      <mo>∑</mo>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <munder accent="true">
+                        <mo>∑</mo>
+                        <mi>y</mi>
+                      </munder>
+                      <mi>x</mi>
+                    </mrow>
+                    <mtext> or </mtext>
+                    <mrow>
+                      <msubsup>
+                        <mrow>
+                          <mo>∑</mo>
+                        </mrow>
+                        <mi>b</mi>
+                        <mi>c</mi>
+                      </msubsup>
+                      <mi>a</mi>
+                    </mrow>
+                  </mrow>
+                </mrow>
+              </mtd>
+            </mtr>
+          </mtable>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

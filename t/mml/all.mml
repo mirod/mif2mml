@@ -1,0 +1,1111 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity aleph</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">א</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity alpha</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">α</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity beta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">β</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity bot</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⊥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity chi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">χ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity cpartial</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∂</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity degree</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">°</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity delta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">δ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Delta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∆</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity emptyset</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∅</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity epsilon</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ε</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity eta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">η</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity gamma</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Gamma</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Im</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">𝔍</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity infty</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∞</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity iota</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ι</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity kappa</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">κ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity lambda</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Lambda</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity ldots</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">…</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity mu</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">μ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity nabla</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∇</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity nu</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ν</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity omega</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Omega</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity phi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Phi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity pi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Pi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity pprime</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">″</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity prime</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">′</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity psi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Psi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Re</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ℜ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity rho</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ρ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity sigma</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Sigma</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity tau</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">τ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity theta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Theta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity upsilon</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Upsilon</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity varphi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity varpi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity varsigma</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ς</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity vartheta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity wp</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">℘</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity xi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ξ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity Xi</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ξ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity zeta</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ζ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity leq</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≤</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity geq</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity lessthan</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">&lt;</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity notequal</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≠</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity greaterthan</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">></mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity infty</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∞</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity rarr</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">→</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity caret</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‸</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity tprime</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‴</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity rabracket</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">›</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity labracket</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‹</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity tie</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⁀</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity overline</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‾</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity dagger</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">†</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity geq</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity leq</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">≤</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity sum</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∑</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity int</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∫</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity dot</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⋅</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity twodots</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">‥</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity ellip</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">…</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity box</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">□</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity angle</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∠</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity bullet</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">•</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity times</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">⨉</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity exists</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∃</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity forall</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∀</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity minusplus</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∓</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity plusminus</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">±</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity neg</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">¬</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity therefore</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">∴</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity topcurly</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">︷</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>entity bottomcurly</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">︸</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol a</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">α</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol b</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">β</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol c</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">χ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol d</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">δ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol e</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ε</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol f</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol g</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol h</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">η</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol i</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ι</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol j</mtext>
+          <mo>=</mo>
+          <mi>ϕ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol k</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">κ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol l</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol m</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">μ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol n</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ν</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol o</mtext>
+          <mo>=</mo>
+          <mi>ο</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol p</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol q</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol r</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ρ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol s</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol t</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">τ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol u</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol v</mtext>
+          <mo>=</mo>
+          <mi>ϖ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol w</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol x</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ξ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol y</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol z</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ζ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol D</mtext>
+          <mo>=</mo>
+          <mi>Δ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol F</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Φ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol G</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Γ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol J</mtext>
+          <mo>=</mo>
+          <mi>ϑ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol L</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Λ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol P</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Π</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol Q</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Θ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol S</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Σ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol U</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Υ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol V</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">ς</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol Y</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ψ</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol W</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>symbol O</mtext>
+          <mo>=</mo>
+          <mi mathvariant="normal">Ω</mi>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

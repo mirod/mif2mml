@@ -1,0 +1,275 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Optional op</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op grad</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>∇</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <msub>
+                <mo>∇</mo>
+                <mi>y</mi>
+              </msub>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>∇</mo>
+              <mn>1</mn>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <msub>
+                <mo>∇</mo>
+                <mn>2</mn>
+              </msub>
+              <mn>1</mn>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op log</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>log</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <msub>
+                <mo>log</mo>
+                <mi>y</mi>
+              </msub>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>log</mo>
+              <mn>1</mn>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <msub>
+                <mo>log</mo>
+                <mn>2</mn>
+              </msub>
+              <mn>1</mn>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op oppartial</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mfrac>
+              <mrow>
+                <mo>∂</mo>
+              </mrow>
+              <mrow>
+                <mo>∂</mo>
+                <mi>x</mi>
+              </mrow>
+            </mfrac>
+            <mtext> or </mtext>
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mo>∂</mo>
+                  <mi>y</mi>
+                </msup>
+              </mrow>
+              <mrow>
+                <mo>∂</mo>
+                <mi>
+                  <mi>x</mi>
+                </mi>
+              </mrow>
+            </mfrac>
+            <mtext> or </mtext>
+            <mfrac>
+              <mrow>
+                <mo>∂</mo>
+              </mrow>
+              <mrow>
+                <mo>∂</mo>
+                <mn>1</mn>
+              </mrow>
+            </mfrac>
+            <mtext> or </mtext>
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mo>∂</mo>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+              <mrow>
+                <mo>∂</mo>
+                <mi>
+                  <mn>1</mn>
+                </mi>
+              </mrow>
+            </mfrac>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op optotal</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mfrac>
+              <mrow>
+                <mo>d</mo>
+              </mrow>
+              <mrow>
+                <mo>d</mo>
+                <mi>x</mi>
+              </mrow>
+            </mfrac>
+            <mtext> or </mtext>
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mo>d</mo>
+                  <mi>y</mi>
+                </msup>
+              </mrow>
+              <mrow>
+                <mo>d</mo>
+                <mi>
+                  <mi>x</mi>
+                </mi>
+              </mrow>
+            </mfrac>
+            <mtext> or </mtext>
+            <mfrac>
+              <mrow>
+                <mo>d</mo>
+              </mrow>
+              <mrow>
+                <mo>d</mo>
+                <mn>1</mn>
+              </mrow>
+            </mfrac>
+            <mtext> or </mtext>
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mo>d</mo>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+              <mrow>
+                <mo>d</mo>
+                <mi>
+                  <mn>1</mn>
+                </mi>
+              </mrow>
+            </mfrac>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op sqrt</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msqrt>
+              <mi>x</mi>
+            </msqrt>
+            <mtext> or </mtext>
+            <mroot>
+              <mi>x</mi>
+              <mi>y</mi>
+            </mroot>
+            <mtext> or </mtext>
+            <msqrt>
+              <mn>1</mn>
+            </msqrt>
+            <mtext> or </mtext>
+            <mroot>
+              <mn>1</mn>
+              <mn>2</mn>
+            </mroot>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>op substitution</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mi>x</mi>
+              <mo>|</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <msub>
+              <mrow>
+                <mi>x</mi>
+                <mo>|</mo>
+              </mrow>
+              <mi>y</mi>
+            </msub>
+            <mtext> or </mtext>
+            <mrow>
+              <mn>1</mn>
+              <mo>|</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <msub>
+              <mrow>
+                <mn>1</mn>
+                <mo>|</mo>
+              </mrow>
+              <mn>2</mn>
+            </msub>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>3 args substitution</mtext>
+          <mo>=</mo>
+          <msubsup>
+            <mrow>
+              <mi>a</mi>
+              <mo>|</mo>
+            </mrow>
+            <mi>b</mi>
+            <mi>c</mi>
+          </msubsup>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

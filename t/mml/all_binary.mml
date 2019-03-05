@@ -1,0 +1,258 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Binary Ops</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary acmut</mtext>
+          <mo>=</mo>
+          <mfenced close="}" open="{" separators=",">
+            <mi>x</mi>
+            <mi>y</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary bullet</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo>•</mo>
+            <mi>y</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary bket</mtext>
+          <mo>=</mo>
+          <mfenced close="〉" open="〈" separators="|">
+            <mi>x</mi>
+            <mi>y</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary choice</mtext>
+          <mo>=</mo>
+          <mfenced>
+            <mfrac linethickness="0">
+              <mi>x</mi>
+              <mi>y</mi>
+            </mfrac>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary cmut</mtext>
+          <mo>=</mo>
+          <mfenced close="]" open="[" separators=",">
+            <mi>x</mi>
+            <mi>y</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary cross</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo>×</mo>
+            <mi>y</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary div</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo>÷</mo>
+            <mi>y</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary fract</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo>⁄</mo>
+            <mi>y</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary function</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mfenced>
+              <mi>y</mi>
+            </mfenced>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary inprod</mtext>
+          <mo>=</mo>
+          <mfenced>
+            <mi>x</mi>
+            <mi>y</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary lim</mtext>
+          <mo>=</mo>
+          <munder>
+            <mrow>
+              <mo>lim</mo>
+              <mi>x</mi>
+            </mrow>
+            <mi>y</mi>
+          </munder>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary over</mtext>
+          <mo>=</mo>
+          <mfrac>
+            <mi>x</mi>
+            <mi>y</mi>
+          </mfrac>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary power</mtext>
+          <mo>=</mo>
+          <msup>
+            <mi>x</mi>
+            <mi>y</mi>
+          </msup>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary sn</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo>×</mo>
+            <msup>
+              <mi>10</mi>
+              <mi>y</mi>
+            </msup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary f(oppartial)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mo>∂</mo>
+                  <mi>y</mi>
+                </msup>
+              </mrow>
+              <mrow>
+                <mo>∂</mo>
+                <mi>
+                  <mi>x</mi>
+                </mi>
+              </mrow>
+            </mfrac>
+            <mrow/>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>binary f(optotal)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mfrac>
+              <mrow>
+                <msup>
+                  <mo>d</mo>
+                  <mi>y</mi>
+                </msup>
+              </mrow>
+              <mrow>
+                <mo>d</mo>
+                <mi>
+                  <mi>x</mi>
+                </mi>
+              </mrow>
+            </mfrac>
+            <mrow/>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>sn</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mtext> format i1i </mtext>
+            <mrow>
+              <mi>x</mi>
+              <mo>E</mo>
+              <mi>y</mi>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

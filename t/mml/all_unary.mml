@@ -1,0 +1,859 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Unary Ops</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary abs</mtext>
+          <mo>=</mo>
+          <mfenced close="|" open="|" separators=",">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary acos</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>acos</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary acosh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>acosh</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary acot</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>acot</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary acoth</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>acoth</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary acsc</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>acsc</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary acsch</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>acsch</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary angle</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∠</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary arg</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>arg</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary asec</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>asec</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary asech</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>asech</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary asin</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>asin</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary asinh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>asinh</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary ast</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msup>
+              <mi>x</mi>
+              <mo>∗</mo>
+            </msup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary atan</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>atan</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary atanh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>atanh</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary box</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>□</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary box2</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msup>
+              <mi>□</mi>
+              <mi>2</mi>
+            </msup>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary boxdot</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>□⋅</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary bra</mtext>
+          <mo>=</mo>
+          <mfenced close="|" open="‹" separators=",">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary ceil</mtext>
+          <mo>=</mo>
+          <mfenced close="⌉" open="⌈" separators=",">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary change</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∆</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary cos</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>cos</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary cosh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>cosh</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary cot</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>cot</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary coth</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>coth</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary csc</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>csc</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary csch</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>csch</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary curl</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∇⨉</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary dagger</mtext>
+          <mo>=</mo>
+          <msup>
+            <mi>x</mi>
+            <mo>†</mo>
+          </msup>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary dangle</mtext>
+          <mo>=</mo>
+          <mfenced close=">" open="&lt;" separators=",">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary diff</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo mathvariant="italic">d</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary diver</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∇⋅</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary downbrace</mtext>
+          <mo>=</mo>
+          <mover>
+            <mi>x</mi>
+            <mo>︷</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary exists</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∃</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary exp</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>exp</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary fact</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo>!</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary floor</mtext>
+          <mo>=</mo>
+          <mfenced close="⌋" open="⌊" separators=",">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary forall</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∀</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary id</mtext>
+          <mo>=</mo>
+          <mfenced separators="">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary imag</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>imag</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary ket</mtext>
+          <mo>=</mo>
+          <mfenced close="›" open="|" separators=",">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary lap</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msup>
+              <mi>∇</mi>
+              <mi>2</mi>
+            </msup>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary ln</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>ln</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary lparen</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>(</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary minus</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>-</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary mp</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∓</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary neg</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>¬</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary norm</mtext>
+          <mo>=</mo>
+          <mfenced close="‖" open="‖" separators=",">
+            <mi>x</mi>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary overline</mtext>
+          <mo>=</mo>
+          <mover>
+            <mi>x</mi>
+            <mo>‾</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary partial</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∂</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary pm</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>±</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary real</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>real</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary rparen</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary sec</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>sec</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary sech</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>sech</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary sgn</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>sgn</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary sin</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>sin</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary sinh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>sinh</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary tan</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>tan</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary tanh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>tanh</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary therefore</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>∴</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary ucomma</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>,</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary uequal</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>=</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary upbrace</mtext>
+          <mo>=</mo>
+          <munder>
+            <mi>x</mi>
+            <mo>︸</mo>
+          </munder>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary var</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mo>δ</mo>
+            <mi>x</mi>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary id</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mtext> format i1i </mtext>
+            <mfenced close="]" open="[" separators="">
+              <mi>x</mi>
+            </mfenced>
+            <mtext> format i2i </mtext>
+            <mfenced close="}" open="{" separators="">
+              <mi>x</mi>
+            </mfenced>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary lparen</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mtext> format i1i </mtext>
+            <mrow>
+              <mo>[</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> format i2i </mtext>
+            <mrow>
+              <mo>{</mo>
+              <mi>x</mi>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>unary rparen</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mtext> format i1i </mtext>
+            <mrow>
+              <mi>x</mi>
+              <mo>]</mo>
+            </mrow>
+            <mtext> format i2i </mtext>
+            <mrow>
+              <mi>x</mi>
+              <mo>}</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

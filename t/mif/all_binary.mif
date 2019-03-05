@@ -1,0 +1,20 @@
+<MathFullForm `
+atop[
+  string[(*WBoldW*)"Binary Ops"],equal[string["binary acmut"], acmut[char[x],char[y]]],
+  equal[string["binary bullet"], bullet[char[x],char[y]]],
+  equal[string["binary bket"], bket[char[x],char[y]]],
+  equal[string["binary choice"], choice[char[x],char[y]]],
+  equal[string["binary cmut"], cmut[char[x],char[y]]],
+  equal[string["binary cross"], cross[char[x],char[y]]],
+  equal[string["binary div"], div[char[x],char[y]]],
+  equal[string["binary fract"], fract[char[x],char[y]]],
+  equal[string["binary function"], function[char[x],char[y]]],
+  equal[string["binary inprod"], inprod[char[x],char[y]]],
+  equal[string["binary lim"], lim[char[x],char[y]]],
+  equal[string["binary over"], over[char[x],char[y]]],
+  equal[string["binary power"], power[char[x],char[y]]],
+  equal[string["binary sn"], sn[char[x],char[y]]],
+  equal[string["binary f(oppartial)"], function[oppartial[char[x],char[y]]]],
+  equal[string["binary f(optotal)"], function[optotal[char[x],char[y]]]],
+  equal[string["sn"], list[string[" format i1i "],sn[(*i1i*)char[x],char[y]]]]]
+'> # end of MathFullForm

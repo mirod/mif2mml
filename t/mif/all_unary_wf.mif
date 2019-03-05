@@ -1,0 +1,6 @@
+<MathFullForm `
+atop[
+  string[(*WBoldW*)"Unary with format"],equal[string["unary id"], list[string[" format i1i "],id[(*i1i*)char[x]],string[" format i2i "],id[(*i2i*)char[x]]]],
+  equal[string["unary lparen"], list[string[" format i1i "],lparen[(*i1i*)char[x]],string[" format i2i "],lparen[(*i2i*)char[x]]]],
+  equal[string["unary rparen"], list[string[" format i1i "],rparen[(*i1i*)char[x]],string[" format i2i "],rparen[(*i2i*)char[x]]]]]
+'> # end of MathFullForm

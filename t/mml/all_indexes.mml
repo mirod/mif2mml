@@ -1,0 +1,1298 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Indexes</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[0,1]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msup>
+              <mi>x</mi>
+              <mi>a</mi>
+            </msup>
+            <mtext> or </mtext>
+            <msup>
+              <mi>x</mi>
+              <mn>1</mn>
+            </msup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[0,2]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msup>
+              <mi>x</mi>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+              </mrow>
+            </msup>
+            <mtext> or </mtext>
+            <msup>
+              <mi>x</mi>
+              <mrow>
+                <mn>1</mn>
+                <mn>2</mn>
+              </mrow>
+            </msup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[1,0]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msub>
+              <mi>x</mi>
+              <mi>a</mi>
+            </msub>
+            <mtext> or </mtext>
+            <msub>
+              <mi>x</mi>
+              <mn>1</mn>
+            </msub>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[1,1]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msubsup>
+              <mi>x</mi>
+              <mi>a</mi>
+              <mi>b</mi>
+            </msubsup>
+            <mtext> or </mtext>
+            <msubsup>
+              <mi>x</mi>
+              <mn>1</mn>
+              <mn>2</mn>
+            </msubsup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[1,2]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msubsup>
+              <mi>x</mi>
+              <mi>a</mi>
+              <mrow>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+            </msubsup>
+            <mtext> or </mtext>
+            <msubsup>
+              <mi>x</mi>
+              <mn>1</mn>
+              <mrow>
+                <mn>2</mn>
+                <mn>3</mn>
+              </mrow>
+            </msubsup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[2,0]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msub>
+              <mi>x</mi>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+              </mrow>
+            </msub>
+            <mtext> or </mtext>
+            <msub>
+              <mi>x</mi>
+              <mrow>
+                <mn>1</mn>
+                <mn>2</mn>
+              </mrow>
+            </msub>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[2,1]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msubsup>
+              <mi>x</mi>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+              </mrow>
+              <mi>c</mi>
+            </msubsup>
+            <mtext> or </mtext>
+            <msubsup>
+              <mi>x</mi>
+              <mrow>
+                <mn>1</mn>
+                <mn>2</mn>
+              </mrow>
+              <mn>3</mn>
+            </msubsup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>indexes[2,2]</mtext>
+          <mo>=</mo>
+          <mrow>
+            <msubsup>
+              <mi>x</mi>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+              </mrow>
+              <mrow>
+                <mi>c</mi>
+                <mi>d</mi>
+              </mrow>
+            </msubsup>
+            <mtext> or </mtext>
+            <msubsup>
+              <mi>x</mi>
+              <mrow>
+                <mn>1</mn>
+                <mn>2</mn>
+              </mrow>
+              <mrow>
+                <mn>3</mn>
+                <mn>4</mn>
+              </mrow>
+            </msubsup>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 2 (2 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mi>a</mi>
+              <none/>
+              <none/>
+              <mi>b</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mn>1</mn>
+              <none/>
+              <none/>
+              <mn>2</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 1 (2 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mi>a</mi>
+              <mi>b</mi>
+              <none/>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mn>1</mn>
+              <mn>2</mn>
+              <none/>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 1 (3 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mi>a</mi>
+              <mi>b</mi>
+              <none/>
+              <mi>c</mi>
+              <none/>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mn>1</mn>
+              <mn>2</mn>
+              <none/>
+              <mn>3</mn>
+              <none/>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 6 (3 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mi>a</mi>
+              <none/>
+              <none/>
+              <mi>b</mi>
+              <none/>
+              <mi>c</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mn>1</mn>
+              <none/>
+              <none/>
+              <mn>2</mn>
+              <none/>
+              <mn>3</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 2 (3 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mi>a</mi>
+              <none/>
+              <none/>
+              <mi>b</mi>
+              <mi>c</mi>
+              <none/>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mn>1</mn>
+              <none/>
+              <none/>
+              <mn>2</mn>
+              <mn>3</mn>
+              <none/>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 5 (3 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mi>a</mi>
+              <mi>b</mi>
+              <none/>
+              <none/>
+              <mi>c</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mn>1</mn>
+              <mn>2</mn>
+              <none/>
+              <none/>
+              <mn>3</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 4 (3 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mi>a</mi>
+              <none/>
+              <mi>b</mi>
+              <none/>
+              <none/>
+              <mi>c</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mn>1</mn>
+              <none/>
+              <mn>2</mn>
+              <none/>
+              <none/>
+              <mn>3</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>tensor 3 (3 ops)</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mi>a</mi>
+              <none/>
+              <mi>b</mi>
+              <mi>c</mi>
+              <none/>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mn>1</mn>
+              <none/>
+              <mn>2</mn>
+              <mn>3</mn>
+              <none/>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 1,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mprescripts/>
+              <mi>a</mi>
+              <none/>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mprescripts/>
+              <mn>1</mn>
+              <none/>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 0,0,1,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mprescripts/>
+              <none/>
+              <mi>a</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mprescripts/>
+              <none/>
+              <mn>1</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 1,0,1,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mprescripts/>
+              <mi>b</mi>
+              <mi>a</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mprescripts/>
+              <mn>2</mn>
+              <mn>1</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 1,1,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mi>b</mi>
+              <none/>
+              <mprescripts/>
+              <mi>a</mi>
+              <none/>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mn>2</mn>
+              <none/>
+              <mprescripts/>
+              <mn>1</mn>
+              <none/>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 0,0,1,1</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mi>b</mi>
+              <mprescripts/>
+              <none/>
+              <mi>a</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mn>2</mn>
+              <mprescripts/>
+              <none/>
+              <mn>1</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 1,1,1,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mi>c</mi>
+              <none/>
+              <mprescripts/>
+              <mi>b</mi>
+              <mi>a</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mn>3</mn>
+              <none/>
+              <mprescripts/>
+              <mn>2</mn>
+              <mn>1</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 1,0,1,1</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mi>b</mi>
+              <mprescripts/>
+              <mi>c</mi>
+              <mi>a</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <none/>
+              <mn>2</mn>
+              <mprescripts/>
+              <mn>3</mn>
+              <mn>1</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>chem 1,1,1,1</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mi>d</mi>
+              <mi>b</mi>
+              <mprescripts/>
+              <mi>c</mi>
+              <mi>a</mi>
+            </mmultiscripts>
+            <mtext> or </mtext>
+            <mmultiscripts>
+              <mi>x</mi>
+              <mn>4</mn>
+              <mn>2</mn>
+              <mprescripts/>
+              <mn>3</mn>
+              <mn>1</mn>
+            </mmultiscripts>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 1,0,0,0,0</mtext>
+          <mo>=</mo>
+          <mover accent="true">
+            <mi>x</mi>
+            <mo accent="true">⇀</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 2,0,0,0,0</mtext>
+          <mo>=</mo>
+          <mover accent="true">
+            <mi>x</mi>
+            <mo accent="true">^</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 3,0,0,0,0</mtext>
+          <mo>=</mo>
+          <mover accent="true">
+            <mi>x</mi>
+            <mo accent="true">~</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,1,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo accent="true">′</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,2,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo accent="true">″</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,3,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mi>x</mi>
+            <mo accent="true">‴</mo>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,0,1,0,0</mtext>
+          <mo>=</mo>
+          <mover>
+            <mi>x</mi>
+            <mo accent="true">⋅</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,0,2,0,0</mtext>
+          <mo>=</mo>
+          <mover accent="true">
+            <mi>x</mi>
+            <mo>‥</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,0,3,0,0</mtext>
+          <mo>=</mo>
+          <mover accent="true">
+            <mi>x</mi>
+            <mo>…</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,0,0,1,0</mtext>
+          <mo>=</mo>
+          <mover accent="true">
+            <mi>x</mi>
+            <mo>‾</mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,0,0,0,1</mtext>
+          <mo>=</mo>
+          <munder accentunder="true">
+            <mi>x</mi>
+            <mo>~</mo>
+          </munder>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>char mod 0,0,0,0,2</mtext>
+          <mo>=</mo>
+          <munder accentunder="true">
+            <mi>x</mi>
+            <mo>_</mo>
+          </munder>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 1,0,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mover accent="true">
+              <mi>x</mi>
+              <mo accent="true">⇀</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mn>1</mn>
+              <mo accent="true">⇀</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo accent="true">⇀</mo>
+            </mover>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 2,0,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mover accent="true">
+              <mi>x</mi>
+              <mo accent="true">^</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mn>1</mn>
+              <mo accent="true">^</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo accent="true">^</mo>
+            </mover>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 3,0,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mover accent="true">
+              <mi>x</mi>
+              <mo accent="true">~</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mn>1</mn>
+              <mo accent="true">~</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo accent="true">~</mo>
+            </mover>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,1,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mi>x</mi>
+              <mo accent="true">′</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mn>1</mn>
+              <mo accent="true">′</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo accent="true">′</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,2,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mi>x</mi>
+              <mo accent="true">″</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mn>1</mn>
+              <mo accent="true">″</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo accent="true">″</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,3,0,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mi>x</mi>
+              <mo accent="true">‴</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mn>1</mn>
+              <mo accent="true">‴</mo>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo accent="true">‴</mo>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,0,1,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mover>
+              <mi>x</mi>
+              <mo accent="true">⋅</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover>
+              <mn>1</mn>
+              <mo accent="true">⋅</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover>
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo accent="true">⋅</mo>
+            </mover>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,0,2,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mover accent="true">
+              <mi>x</mi>
+              <mo>‥</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mn>1</mn>
+              <mo>‥</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo>‥</mo>
+            </mover>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,0,3,0,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mover accent="true">
+              <mi>x</mi>
+              <mo>…</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mn>1</mn>
+              <mo>…</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo>…</mo>
+            </mover>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,0,0,1,0</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mover accent="true">
+              <mi>x</mi>
+              <mo>‾</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mn>1</mn>
+              <mo>‾</mo>
+            </mover>
+            <mtext> or </mtext>
+            <mover accent="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo>‾</mo>
+            </mover>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,0,0,0,1</mtext>
+          <mo>=</mo>
+          <mrow>
+            <munder accentunder="true">
+              <mi>x</mi>
+              <mo>~</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mn>1</mn>
+              <mo>~</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo>~</mo>
+            </munder>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 0,0,0,0,2</mtext>
+          <mo>=</mo>
+          <mrow>
+            <munder accentunder="true">
+              <mi>x</mi>
+              <mo>_</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mn>1</mn>
+              <mo>_</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mrow>
+                <mi>a</mi>
+                <mi>b</mi>
+                <mi>c</mi>
+              </mrow>
+              <mo>_</mo>
+            </munder>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 1,0,0,0,2</mtext>
+          <mo>=</mo>
+          <mrow>
+            <munder accentunder="true">
+              <mover accent="true">
+                <mi>x</mi>
+                <mo accent="true">⇀</mo>
+              </mover>
+              <mo>_</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mover accent="true">
+                <mn>1</mn>
+                <mo accent="true">⇀</mo>
+              </mover>
+              <mo>_</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mover accent="true">
+                <mrow>
+                  <mi>a</mi>
+                  <mi>b</mi>
+                  <mi>c</mi>
+                </mrow>
+                <mo accent="true">⇀</mo>
+              </mover>
+              <mo>_</mo>
+            </munder>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>diacritical 3,1,0,0,2</mtext>
+          <mo>=</mo>
+          <mrow>
+            <munder accentunder="true">
+              <mrow>
+                <mover accent="true">
+                  <mi>x</mi>
+                  <mo accent="true">~</mo>
+                </mover>
+                <mo accent="true">′</mo>
+              </mrow>
+              <mo>_</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mrow>
+                <mover accent="true">
+                  <mn>1</mn>
+                  <mo accent="true">~</mo>
+                </mover>
+                <mo accent="true">′</mo>
+              </mrow>
+              <mo>_</mo>
+            </munder>
+            <mtext> or </mtext>
+            <munder accentunder="true">
+              <mrow>
+                <mover accent="true">
+                  <mrow>
+                    <mi>a</mi>
+                    <mi>b</mi>
+                    <mi>c</mi>
+                  </mrow>
+                  <mo accent="true">~</mo>
+                </mover>
+                <mo accent="true">′</mo>
+              </mrow>
+              <mo>_</mo>
+            </munder>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>matrix 1,1</mtext>
+          <mo>=</mo>
+          <mfenced close="]" open="[" separators="">
+            <mtable>
+              <mtr>
+                <mtd>
+                  <mi>x</mi>
+                </mtd>
+              </mtr>
+            </mtable>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>matrix 1,1 (f)</mtext>
+          <mo>=</mo>
+          <mtable>
+            <mtr>
+              <mtd>
+                <mi>x</mi>
+              </mtd>
+            </mtr>
+          </mtable>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>matrix 2,3</mtext>
+          <mo>=</mo>
+          <mfenced close="]" open="[" separators="">
+            <mtable>
+              <mtr>
+                <mtd>
+                  <mn>1</mn>
+                </mtd>
+                <mtd>
+                  <mn>2</mn>
+                </mtd>
+                <mtd>
+                  <mn>3</mn>
+                </mtd>
+              </mtr>
+              <mtr>
+                <mtd>
+                  <mi>a</mi>
+                </mtd>
+                <mtd>
+                  <mi>b</mi>
+                </mtd>
+                <mtd>
+                  <mi>c</mi>
+                </mtd>
+              </mtr>
+            </mtable>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>matrix 3,2</mtext>
+          <mo>=</mo>
+          <mfenced close="]" open="[" separators="">
+            <mtable>
+              <mtr>
+                <mtd>
+                  <mi>x</mi>
+                </mtd>
+                <mtd>
+                  <mi>y</mi>
+                </mtd>
+              </mtr>
+              <mtr>
+                <mtd>
+                  <mi>a</mi>
+                </mtd>
+                <mtd>
+                  <mi>b</mi>
+                </mtd>
+              </mtr>
+              <mtr>
+                <mtd>
+                  <mn>1</mn>
+                </mtd>
+                <mtd>
+                  <mn>2</mn>
+                </mtd>
+              </mtr>
+            </mtable>
+          </mfenced>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

@@ -1,0 +1,618 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext>Simple functions</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function acos</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>acos</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>acos</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function acosh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>acosh</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>acosh</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function acot</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>acot</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>acot</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function acoth</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>acoth</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>acoth</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function acsc</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>acsc</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>acsc</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function acsch</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>acsch</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>acsch</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function arg</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>arg</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>arg</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function asec</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>asec</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>asec</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function asech</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>asech</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>asech</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function asin</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>asin</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>asin</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function atan</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>atan</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>atan</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function atanh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>atanh</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>atanh</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function cos</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>cos</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>cos</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function cosh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>cosh</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>cosh</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function cot</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>cot</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>cot</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function coth</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>coth</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>coth</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function csc</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>csc</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>csc</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function csch</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>csch</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>csch</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function exp</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>exp</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>exp</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function imag</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>imag</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>imag</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function ln</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>ln</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>ln</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function real</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>real</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>real</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function sec</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>sec</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>sec</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function sech</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>sech</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>sech</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function sgn</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>sgn</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>sgn</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function sin</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>sin</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>sin</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function sinh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>sinh</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>sinh</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function tan</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>tan</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>tan</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow>
+          <mtext>function tanh</mtext>
+          <mo>=</mo>
+          <mrow>
+            <mrow>
+              <mo>tanh</mo>
+              <mi>x</mi>
+            </mrow>
+            <mtext> or </mtext>
+            <mrow>
+              <mo>tanh</mo>
+              <mfenced separators="">
+                <mi>x</mi>
+              </mfenced>
+            </mrow>
+          </mrow>
+        </mrow>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>
