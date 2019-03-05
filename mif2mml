@@ -88,6 +88,7 @@ my %special=
     rparen      => \&rparen,
     indexes     => \&indexes,
     diacritical => \&diacritical,
+    atop        => \&atop,
     ast         => sub { mrow( msup( $_[0], mo('∗'))); },
     box2        => sub { mrow( msup( mi($ent{box}), mi(2)), @_); },
     downbrace   => sub { mover( mrow( $_[0]), mo( $ent{topcurly})); },
@@ -145,19 +146,6 @@ my %special=
                           else            { msubsup( mrow( shift(), mo( '|')), @_); }
                         },
     list  => sub { return mrow( @_); },
-    atop        => sub { my $format= shift;
-                         my $align= exists $format->{j} &&  $format->{j} == 0 ? 'center'
-                                  : $format->{j} == 1                         ? 'left'
-                                  : $format->{j} == 2                         ? 'right'
-                                  :                                             'left';
-                         my $mtable;
-                         if( $format->{j} < 3)
-                           { $mtable= mtable( { columnalign => $align }, map { mtr( mtd($_)) } @_); }
-                         else
-                           { $mtable= atop_aligned( $align, @_); } # j3j means "align on equal" 
-
-                         return $mtable;
-                       },
   );
 
 # p 186-194 of the MIF reference Manual
@@ -211,6 +199,36 @@ my %is_comp = map { $nary{$_} => 1 } qw( geq greaterthan leq lessthan notequal a
 my %large=( bigcap => '∩', bigcup => '∪', int => '∫', oint => '∫', prod => '∏', sum => '∑');
 
 my $nbsp= "\N{U+A0}"; # replace spaces in strings and chars by nbsp, so they don't get thrown away by the display engines 
+
+sub atop
+  { my( $format, @mrows)= @_;
+    my $align= exists $format->{j} &&  $format->{j} == 0 ? 'center'
+             : $format->{j} == 1                         ? 'left'
+             : $format->{j} == 2                         ? 'right'
+             :                                             'left';
+    my $mtable;
+    if( $format->{j} >= 3 || atop_looks_like_should_be_aligned( @mrows))
+      { $mtable= atop_aligned( $align, @mrows); } # j3j (or j4j) means "align on equal" 
+    else
+      { $mtable= mtable( { columnalign => $align }, map { mtr( mtd($_)) } @mrows); }
+
+    return $mtable;
+  }
+
+# in some (lots of!) cases the lines are aligned vertically on the equal sign
+# but this is done not by setting the proper format for atop (j3j) but by moving the following lines right
+# so we get a first line that's equal, then the following are uequal (unitary equal), moved to the right, 
+# which shows up in the mif as the x format (kern!) 
+sub atop_looks_like_should_be_aligned
+  { my( @mrows)= @_;
+    return if ! @mrows;                     # no row
+    my $first_row= shift @mrows;
+    return if $first_row->from ne 'equal';  # if it's not equal, we're not in this case (TODO how about other comparison?)
+    foreach my $cont_row (@mrows)           # all other lines should be uequal, with an x format
+      { return if $cont_row->from ne 'uequal' || ! $cont_row->format( 'x'); }
+    return 1;                               # if we get here then indeed it looks like the lines should be aligned on '='
+  }
+
 
 # receives a list of mrows, that should be aligned using an mtable (MathML choice, not mine!)
 
@@ -632,10 +650,11 @@ sub offset_tweak
     my $points= $offset/65536;
     if( $points > 0)      # boundaries are guessed
       { return mrow( msub( mi(''), $m)); }
-    elsif( $points >= -6 && $points <= -2)
+    elsif( $points >= -6 && $points <= -3)
       { return mrow( msup( mi(''), $m)); }
     else
-      { warn "cannot process y offset $offset ($points pt)\n"; 
+      { my $pt= int( $points); # so display is nicer
+        warn "cannot process y offset $offset ($pt pt)\n"; 
         return $m;
       }
   }
