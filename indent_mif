@@ -4,15 +4,15 @@ use strict;
 use warnings;
 
 my $mif= join '', <>;
-if( $mif=~ m{<MathFullForm `(.*)'\s*> # end of MathFullForm}s)
+if( $mif=~ m{<MathFullForm\s*`\s*(.*)'\s*> # end of MathFullForm}s)
   { $mif= $1; }
 else
   { die "not a mif equation\n"; }
 
 #my $string= qr{(?:"[^"]*")};
 my $format = qr{(?:\(\*[^\*]*\*\))};
-my $open   = qr{(?:\w+\[$format?)(?:\d,)*};
-my $close  = qr{(?:\],?)};
+my $open   = qr{\s*(?:\w+\[\s*$format?)(?:\d,)*};
+my $close  = qr{\s*(?:\]\s*,?)\s*};
 my $inline = qr{(?:(?:num|char|string)\[[^\]]*\],?)};
 
 my $indented='';

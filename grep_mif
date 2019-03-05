@@ -8,7 +8,7 @@ use Term::ANSIColor;
 
 use Getopt::Std;
 my %opt;
-getopts( 'cd:l', \%opt);
+getopts( 'cd:lC', \%opt);
 
 my $exp= shift @ARGV;
 if( ! $exp) { die "missing stuff to grep for\n"; }
@@ -33,7 +33,11 @@ foreach my $file (@files)
           { print "$file: ", scalar(@hits), "\n"; }
         else
           { foreach my $hit (@hits)
-              { print "$file: ",$hit->[0], colored( [ 'blue'] => $hit->[1]), $hit->[2], "\n"; }
+              { if( $opt{C})
+                  { print "$file: ",$hit->[0], colored( [ 'blue'] => $hit->[1]), $hit->[2], "\n"; }
+                else
+                  { print "$file: ",$hit->[0], $hit->[1], $hit->[2], "\n"; }
+              }
           }
       }
         
@@ -60,3 +64,14 @@ sub slurp
     return $content;
   }
 
+__END__
+=head1 NAME
+
+  grep_mif - greps MIF equations (just the equation part) 
+
+=head1 OPTIONS
+
+  -l   list, lists files containing the expression
+  -c   count, lists files containing the expression with the number of matched lines
+  -C   Color, clorizes the match
+  -d   greps all mif files in the directory (does not recurse in the directory)

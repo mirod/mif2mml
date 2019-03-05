@@ -15,11 +15,6 @@ my %opt;
 getopts( 'd:hko', \%opt);
 if( $opt{h}) { $opt{k}=1; }
 
-# options
-# -d <dir>  use <dir> as the base for tests (defaults to t/)
-# -k        keep the generated mml (in the mif directory)
-# -h        generates html pages (one with MathJax, one without) with the equations that are different
-# -o        update the reference (n t/mml) with the new mml generated (use when the tests look OK) 
 
 my $t= $opt{d} || 't';
 my $dmif= "$t/mif";
@@ -30,7 +25,7 @@ my @mifs= @ARGV ? @ARGV : glob( "$dmif/*.mif");
 
 my $html;
 local $/="\n\n";
-$html= <DATA>;
+$html= template();
 
 # remove previous generated mmls, in case there are some left over
 system "rm -f $dmif/*.mml";
@@ -104,7 +99,8 @@ sub spit
     print {$out} @_;
   }
 
-__DATA__
+sub template
+  { return <<T;
 <head>
  <title>Equations</title>
  <!--<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'></script>-->
@@ -117,5 +113,51 @@ __DATA__
 </table>    
 </body>
 </html>
+T
+  }
 
+__END__
+=head1 NAME
+
+  mif2mml.t
+
+Test a set of MIF fales for regressions
+
+=head1 SYNOPSYS
+
+  ./mif2mml.t -d xt -h # run the tests
+  # check the xt/eq_nat.html and xt/eq_mj.html files
+  ./mif2mml.t -d xt -o # make the results of the tests the reference
+
+directory structure
+
+  test (or any other name)
+    |__ mif  <mif files to test>
+    |__ mml  <mml files from a previous run>
+    |__ gen  <generated mml files>
+
+  mif2mml -d test 
+
+generates the mml for all mif files in the test/mif/ directory
+compares those files with the previously generated files in test/mml
+outputs the differences
+
+  mif2mml -d test -h
+
+also outputs 2 files, test/eq_nat.html and test/eq_mj.html which display
+each changed equation (both the initial and the new version) the eq_mg.html
+file includes a call to MathJax to display the mathML (test/eq_nat.html can 
+be displayed in browsers that support MathML natively, like FireFox)
+
+  mif2mml -d test -o
+
+copies the generated mathML files in test/gen to test/mml, so they become the new 
+reference
+
+=head1 OPTIONS
+
+   -d <dir>  use <dir> as the base for tests (defaults to t/)
+   -k        keep the generated mml (in the mif directory)
+   -h        generates html pages (one with MathJax, one without) with the equations that are different
+   -o        update the reference (n t/mml) with the new mml generated (use when the tests look OK) 
     
