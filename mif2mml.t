@@ -12,10 +12,16 @@ use List::MoreUtils qw(natatime);
 
 use Getopt::Std;
 my %opt;
-getopts( 'kho', \%opt);
+getopts( 'd:hko', \%opt);
 if( $opt{h}) { $opt{k}=1; }
 
-my $t= 't';
+# options
+# -d <dir>  use <dir> as the base for tests (defaults to t/)
+# -k        keep the generated mml (in the mif directory)
+# -h        generates html pages (one with MathJax, one without) with the equations that are different
+# -o        update the reference (n t/mml) with the new mml generated (use when the tests look OK) 
+
+my $t= $opt{d} || 't';
 my $dmif= "$t/mif";
 my $dmml= "$t/mml";
 my $dgen= "$t/gen";
@@ -54,7 +60,7 @@ if( $opt{h})
     spit( "$t/eq_nat.html", $html);
     $html=~ s{(<!--|-->)}{}g;
     spit( "$t/eq_mj.html", $html);
-    warn "output: file:///home/mrodrigu/perl/mif2mml/$t/eq_nat.html and file:///home/mrodrigu/perl/mif2mml/$t/eq_mj.html\n"; 
+    warn "output: $t/eq_nat.html and $t/eq_mj.html\n"; 
   }
 
 exit;

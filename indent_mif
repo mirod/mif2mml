@@ -1,0 +1,41 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my $mif= join '', <>;
+if( $mif=~ m{<MathFullForm `(.*)'\s*> # end of MathFullForm}s)
+  { $mif= $1; }
+else
+  { die "not a mif equation\n"; }
+
+#my $string= qr{(?:"[^"]*")};
+my $format = qr{(?:\(\*[^\*]*\*\))};
+my $open   = qr{(?:\w+\[$format?)(?:\d,)*};
+my $close  = qr{(?:\],?)};
+my $inline = qr{(?:(?:num|char|string)\[[^\]]*\],?)};
+
+my $indented='';
+my $level=0;
+
+$mif=~ s{[\r\n]}{}g;
+
+while( $mif)
+  { if( $mif=~ s{^($inline)}{})
+      { $indented .= $1; }
+    elsif( $mif=~ s{^($open)}{})
+      { $level++;
+        $indented .= "\n" . ( '  ' x $level) . $1;
+      }
+    elsif( $mif=~ s{^($close)}{})
+      { 
+        $indented .= "\n" . (  '  ' x $level) . $1;
+        $level--;
+      }
+    else
+      { die "oops, cannot parse rest of the file ##$mif##\n"; }
+  }
+
+$indented=~ s{^\n}{}s;
+
+print $indented . "\n";

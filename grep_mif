@@ -1,0 +1,62 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use utf8::all;
+use Term::ANSIColor;
+
+use Getopt::Std;
+my %opt;
+getopts( 'cd:l', \%opt);
+
+my $exp= shift @ARGV;
+if( ! $exp) { die "missing stuff to grep for\n"; }
+
+my @files= @ARGV;
+if( ! @files) 
+  { my $d= $opt{d} || 'test/mif';
+    @files= glob( "$d/*.mif");
+  }
+
+foreach my $file (@files)
+  { my $content= slurp( $file);
+    my $mif= clean_up_mif( $content);
+    my @hits;
+    while( $mif=~ m{^(.*)($exp)(.*)$}mg)
+      { push @hits, [$1 || '', $2, $3 || '']; }
+
+    if( @hits)
+      { if( $opt{l})
+          { print "$file\n"; }
+        elsif( $opt{c})
+          { print "$file: ", scalar(@hits), "\n"; }
+        else
+          { foreach my $hit (@hits)
+              { print "$file: ",$hit->[0], colored( [ 'blue'] => $hit->[1]), $hit->[2], "\n"; }
+          }
+      }
+        
+
+  }
+
+
+sub clean_up_mif
+  { my( $mif)= @_;
+    my $clean_mif= $mif;
+    if( $mif=~ m{<MathFullForm `([^']*)'\s*> # end of MathFullForm})
+      { $clean_mif= $1; }
+
+    $clean_mif=~ s{[\r\n]+}{\n}g; # normalize line returns
+
+    return $clean_mif;
+  }
+
+sub slurp
+  { my $file= shift;
+    open( my $in, '<', $file) or die "cannot open input file '$file': $!\n";
+    local undef $/;
+    my $content= <$in>;
+    return $content;
+  }
+
