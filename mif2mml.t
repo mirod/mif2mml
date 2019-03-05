@@ -23,10 +23,6 @@ my $dgen= "$t/gen";
 
 my @mifs= @ARGV ? @ARGV : glob( "$dmif/*.mif");
 
-my $html;
-local $/="\n\n";
-$html= template();
-
 # remove previous generated mmls, in case there are some left over
 system "rm -f $dmif/*.mml";
 
@@ -39,6 +35,8 @@ my $it = natatime 100, @mifs;
 while (my @mif_slice = $it->())
       { system './mif2mml', @mif_slice; }
 
+my $html= template_start();
+
 # now we test the results
 foreach my $mif (@mifs)
   { my $ok= test_gen( $mif);
@@ -50,7 +48,7 @@ foreach my $mif (@mifs)
 done_testing();
 
 if( $opt{h})
-  { $html .= <DATA>;
+  { $html .= template_end();
 
     spit( "$t/eq_nat.html", $html);
     $html=~ s{(<!--|-->)}{}g;
@@ -99,8 +97,8 @@ sub spit
     print {$out} @_;
   }
 
-sub template
-  { return <<T;
+sub template_start
+  { return <<TS;
 <head>
  <title>Equations</title>
  <!--<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'></script>-->
@@ -109,11 +107,15 @@ sub template
 <body>
 <table border='2' cellpadding='10' cellspacing='1' style='border-collapse:collapse;'>
 <tr><td><b>MIF</b></td><td><b>reference</b></td><td><b>generated</b></td></tr>
+TS
+  }
 
+sub template_end
+  { return <<TE;
 </table>    
 </body>
 </html>
-T
+TE
   }
 
 __END__
