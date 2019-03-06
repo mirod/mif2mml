@@ -2,20 +2,16 @@
 
 A tool to convert (FrameMaker) MIF files to MathML
 
-## Getting Started
-
-
-
 ### Prerequisites
 
-`mif2mml` is a Perl script, so you will need 
+`mif2mml` is a Perl script. It uses a few Perl modules, so you will need:
 * Perl
 * the expat library
 * the utf8::all, Parse::RecDescent and XML::Twig modules
 
 ### Installing
 
-Use `cpanm` to install the modules:
+Use [cpanm] (https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm) to install the modules:
 
     cpanm utf8::all Parse::RecDescent XML::Twig
 
@@ -32,9 +28,14 @@ You can run the test tool on your own data, to check discrepancies between versi
 
 ## Usage
 
-  ./mif2mml [options] <list_of_mif_files>
+    ./mif2mml <list_of_mif_files>
 
 generates one `.mml` file per `.mif` file
+
+### Options
+
+The tool accepts a handfull of options that you most likely don't need to know about
+use `pod2text mif2mml` to list them if you're curious 
 
 ## Other Tools
 
@@ -43,12 +44,6 @@ generates one `.mml` file per `.mif` file
 * `indent_mif`  displays an indented version of the equation in a MIF file
 * `grep_mif`    greps MIF files for specific constructs (`pod2text grep_mif` for options)
 * `mif2mml.t`   non-regression tests for new versions of the tool (`pod2text mif2mml.t` for options)
-
-### Options
-
-The tool accepts a handfull of options that you most likely don't need to know about
-use `pod2text mif2mml` to list them if you must
-
 
 ## Authors
 

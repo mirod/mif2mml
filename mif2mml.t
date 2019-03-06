@@ -123,7 +123,7 @@ __END__
 
   mif2mml.t
 
-Test a set of MIF fales for regressions
+Test a set of MIF files for regressions
 
 =head1 SYNOPSYS
 
@@ -147,8 +147,8 @@ outputs the differences
   mif2mml -d test -h
 
 also outputs 2 files, test/eq_nat.html and test/eq_mj.html which display
-each changed equation (both the initial and the new version) the eq_mg.html
-file includes a call to MathJax to display the mathML (test/eq_nat.html can 
+each changed equation (both the initial and the new version) the eq_mj.html
+file includes a call to MathJax to display the MathML (test/eq_nat.html can 
 be displayed in browsers that support MathML natively, like FireFox)
 
   mif2mml -d test -o
