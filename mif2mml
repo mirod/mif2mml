@@ -218,14 +218,14 @@ sub atop
 # in some (lots of!) cases the lines are aligned vertically on the equal sign
 # but this is done not by setting the proper format for atop (j3j) but by moving the following lines right
 # so we get a first line that's equal, then the following are uequal (unitary equal), moved to the right, 
-# which shows up in the mif as the x format (kern!) 
+# which shows up in the mif as the l (left) or x (kern???) y (vertical kern!!!) format 
 sub atop_looks_like_should_be_aligned
   { my( @mrows)= @_;
     return if ! @mrows;                     # no row
     my $first_row= shift @mrows;
     return if $first_row->from ne 'equal';  # if it's not equal, we're not in this case (TODO how about other comparison?)
     foreach my $cont_row (@mrows)           # all other lines should be uequal, with an x format
-      { return if $cont_row->from ne 'uequal' || ! $cont_row->format( 'x'); }
+      { return if $cont_row->from ne 'uequal' || ! ($cont_row->format( 'x') || $cont_row->format( 'l') || $cont_row->format( 'y')) ; }
     return 1;                               # if we get here then indeed it looks like the lines should be aligned on '='
   }
 
