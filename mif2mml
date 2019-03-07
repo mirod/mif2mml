@@ -4,15 +4,16 @@ use strict;
 use warnings;
 
 use 5.012;
-
 use utf8::all; # lots of funky chars in here
 
 use Getopt::Std;
-
 our %opt;
-getopts( 'cFnvC:Di:', \%opt);
+getopts( 'cFnvC:Di:V', \%opt);
+
+my $VERSION="2.01"; 
 
 if( $opt{p}) { $opt{s}=1; }
+if( $opt{V}) { print "mif2mml version $VERSION\n"; exit; }
 
 import pelt;
 
@@ -1099,29 +1100,21 @@ __END__
       lower quality results (MathML renderers do a good job on their own,
       the additional formating interferes with it)
 
-  -v verbose
+  -v  verbose
 
-  -D debug adds debugging attributes to the mml elements 
-     - data-format for the Frame format and 
-     - data-from   for the frame construct an element comes from
+  -V  version, prints the version number and exits
 
-  -i <indent_type> changes the result identation, 'none' or 'indented' (default)
+  -D  debug adds debugging attributes to the mml elements 
+      - data-format for the Frame format and 
+      - data-from   for the frame construct an element comes from
+
+  -i <indent_type>  changes the result identation, 'none' or 'indented' (default)
 
 =head1 REQUIREMENTS
 
   - Perl 5.8+, perl modules XML::Twig and Parse::RecDescent
 
   - expat 
-
-  -  mathmlsvg (from gtkmathview http://helm.cs.unibo.it/mml-widget/
-     there are debian packages for libgtkmathview in sid
-     
-     alternatively you could use math2svg (L<http://www.grigoriev.ru/svgmath/>) for SVG generation
-
-     those 2 packages are hell to install and configure, especially to get
-     the fonts right
-
-  - inkscape for PNG generation (from the SVG, so you also need gtkmathview or math2svg)
 
 
 =head1 SEE ALSO
