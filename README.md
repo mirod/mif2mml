@@ -11,7 +11,7 @@ A tool to convert (FrameMaker) MIF files to MathML
 
 ### Installing
 
-Use [cpanm] (https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm) to install the modules:
+Use [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm) to install the modules:
 
     cpanm utf8::all Parse::RecDescent XML::Twig
 
@@ -70,7 +70,7 @@ table at the moment, but it could be added in a future version).
 
 An other tricky situation is when an overline is lowered until it goes across a letter, to create a 
 letter with a stroke (like an ħ). The tool recognizes this, for letter that can have an horizontal
-stroke, and replaces the MIF statement by the letter. 
+stroke, and replaces the MIF statement with the letter. 
 
 ### General Caveat
 
