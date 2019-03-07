@@ -58,7 +58,7 @@ Those formats are somewhat underdocumented in the docs.
 Some of them are often used for minor changes to the way the equation is displayed (like adding a 
 bit of spacing between a fraction bar and the square root below). As this is display-engine dependent, 
 it makes little sense to carry them into the MathML form. So those formats are generally ignored.
-You can use the `-F` option to use them, but you will get a extra `<mpadded>` elements that
+You can use the `-F` option to use them, but you will get extra `<mpadded>` elements that
 will clutter the MathML while bringing little improvement to the displayed equation. 
 
 Those formats can also determine the font used for an element. MathML doesn't really have the concept
@@ -66,20 +66,25 @@ of fonts, it relies on an attribute to the element, with a limited range of valu
 see [section 3.2.2 of the MathML TR](https://www.w3.org/TR/MathML2/chapter3.html#presm.commatt).
 Translating from the font to the attribute is based on the name of the font. If non-standard fonts
 are used, then they will have to be added to the tool (there is no mechanism for a translation
-table at the moment, but ths could be done in a future version).
+table at the moment, but it could be added in a future version).
+
+An other tricky situation is when an overline is lowered until it goes across a letter, to create a 
+letter with a stroke (like an ħ). The tool recognizes this, for letter that can have an horizontal
+stroke, and replaces the MIF statement by the letter. 
 
 ### General Caveat
 
-Generally speaking, MIF equations are created using FrameMaker. 
+In the vast majority of cases, MIF equations are created using FrameMaker.  
 
 The only feedback the author gets is the look of the equation. This can lead to some equations looking
-right, as long as they are displayed in FrameMaker. 
+right... as long as they are displayed in FrameMaker. The underlying structure may be slightly unorthodox.
 
 A typical example is multiline equations being aligned on a character (usually '='). This can be done 
 in several different ways. Some ways are easy to process and convert into MathML that respects 
-the alignment, and some (like using spaces) being a lot more difficult to deal with (indeed the tool
-doesn't deal very well with them). The tool uses a heuristic (ie "an algorithm in a clown suit") to
+the alignment. Some (like using spaces) are a lot more difficult to deal with. Indeed the tool
+doesn't deal very well with them: it uses a heuristic (ie "an algorithm in a clown suit") to
 try to make sense of some of those situations.
+
 
 
 ## Other Tools
