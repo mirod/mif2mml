@@ -355,7 +355,7 @@ sub moi { return tag( mo => { mathvariant => 'italic' }, @_); }
 sub mrows { return [ map { mrow( $_) } @_ ]; }
 
 BEGIN 
-  { foreach my $elt (qw( mo mi mn mtext msup msub mfrac mover mroot munder msqrt mspace mtable mtr mtd mmultiscripts mpadded))
+  { foreach my $elt (qw( mo mi mn mtext mfrac mover mroot munder msqrt mspace msub mtable mtr mtd mmultiscripts mpadded))
       {  no strict 'refs';
         *{$elt}= sub { tag( $elt => @_); };
       }
@@ -455,6 +455,16 @@ sub extract_separators_from_mfenced
     foreach my $esep (@esep) { $esep->delete; } # remove elements
   }
 
+
+sub msup
+  { my $msup= tag( msup => @_);
+    # if the first child is an msub we have an msubsup
+    if( $msup->first_child && $msup->first_child->is( 'msub'))
+      { $msup->set_tag( 'msubsup');
+        $msup->first_child->unwrap;
+      }
+    return $msup;
+  }
 
 sub msubsup    { return tag( msubsup => mrows(@_));    }
 sub munderover { return tag( munderover => mrows(@_)); }
