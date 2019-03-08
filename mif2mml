@@ -398,7 +398,7 @@ sub mrow
       }
 
     my $mrow= tag( mrow => $atts => @content);
-    if( $mrow->has_no_atts && ($mrow->children()==1)  && $mrow->first_child->is( 'mrow|mn|mi'))
+    if( $mrow->has_no_atts && ($mrow->children()==1) )
       { return $mrow->first_child; }
     return $mrow;
   }
