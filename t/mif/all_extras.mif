@@ -1,0 +1,12 @@
+<MathFullForm `
+atop[
+  string[(*W"Bold"W*)"msubsup"],
+  atop[(*j3j*)
+    equal[string["msub with nested MSUP"],indexes[0,1,indexes[1,0,char[A],string["SUP"]],string["sub"]]],
+    equal[string["msub with nested MSUP (+accent)"],indexes[0,1,indexes[1,0,char[A,0,1,0,0,0],string["SUP"]],string["sub"]]],
+    equal[string["MSUP with nested msub"],power[indexes[0,1,string["A"],string["sub"]],string["SUP"]]],
+    equal[string["MSUP with nested msub (sup is accent)"],indexes[0,1,diacritical[0,1,0,0,0,string["A"]],string["sub"]]],
+    equal[string["MSUP with nested msub (sup + accent)"],power[indexes[0,1,diacritical[0,1,0,0,0,string["A"]],string["sub"]],string["SUP"]]]
+  ]
+],
+'> # end of MathFullForm
