@@ -195,12 +195,10 @@
           <mo>=</mo>
           <mrow>
             <mfrac>
-              <mrow>
-                <msup>
-                  <mo>∂</mo>
-                  <mi>y</mi>
-                </msup>
-              </mrow>
+              <msup>
+                <mo>∂</mo>
+                <mi>y</mi>
+              </msup>
               <mrow>
                 <mo>∂</mo>
                 <mi>
@@ -220,12 +218,10 @@
           <mo>=</mo>
           <mrow>
             <mfrac>
-              <mrow>
-                <msup>
-                  <mo>d</mo>
-                  <mi>y</mi>
-                </msup>
-              </mrow>
+              <msup>
+                <mo>d</mo>
+                <mi>y</mi>
+              </msup>
               <mrow>
                 <mo>d</mo>
                 <mi>

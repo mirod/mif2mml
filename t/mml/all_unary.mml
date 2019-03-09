@@ -165,12 +165,10 @@
         <mrow>
           <mtext>unary ast</mtext>
           <mo>=</mo>
-          <mrow>
-            <msup>
-              <mi>x</mi>
-              <mo>∗</mo>
-            </msup>
-          </mrow>
+          <msup>
+            <mi>x</mi>
+            <mo>∗</mo>
+          </msup>
         </mrow>
       </mtd>
     </mtr>

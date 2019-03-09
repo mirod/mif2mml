@@ -82,9 +82,7 @@
           <mo>=</mo>
           <mrow>
             <mfrac>
-              <mrow>
-                <mo>∂</mo>
-              </mrow>
+              <mo>∂</mo>
               <mrow>
                 <mo>∂</mo>
                 <mi>x</mi>
@@ -92,12 +90,10 @@
             </mfrac>
             <mtext> or </mtext>
             <mfrac>
-              <mrow>
-                <msup>
-                  <mo>∂</mo>
-                  <mi>y</mi>
-                </msup>
-              </mrow>
+              <msup>
+                <mo>∂</mo>
+                <mi>y</mi>
+              </msup>
               <mrow>
                 <mo>∂</mo>
                 <mi>
@@ -107,9 +103,7 @@
             </mfrac>
             <mtext> or </mtext>
             <mfrac>
-              <mrow>
-                <mo>∂</mo>
-              </mrow>
+              <mo>∂</mo>
               <mrow>
                 <mo>∂</mo>
                 <mn>1</mn>
@@ -117,12 +111,10 @@
             </mfrac>
             <mtext> or </mtext>
             <mfrac>
-              <mrow>
-                <msup>
-                  <mo>∂</mo>
-                  <mn>2</mn>
-                </msup>
-              </mrow>
+              <msup>
+                <mo>∂</mo>
+                <mn>2</mn>
+              </msup>
               <mrow>
                 <mo>∂</mo>
                 <mi>
@@ -141,9 +133,7 @@
           <mo>=</mo>
           <mrow>
             <mfrac>
-              <mrow>
-                <mo>d</mo>
-              </mrow>
+              <mo>d</mo>
               <mrow>
                 <mo>d</mo>
                 <mi>x</mi>
@@ -151,12 +141,10 @@
             </mfrac>
             <mtext> or </mtext>
             <mfrac>
-              <mrow>
-                <msup>
-                  <mo>d</mo>
-                  <mi>y</mi>
-                </msup>
-              </mrow>
+              <msup>
+                <mo>d</mo>
+                <mi>y</mi>
+              </msup>
               <mrow>
                 <mo>d</mo>
                 <mi>
@@ -166,9 +154,7 @@
             </mfrac>
             <mtext> or </mtext>
             <mfrac>
-              <mrow>
-                <mo>d</mo>
-              </mrow>
+              <mo>d</mo>
               <mrow>
                 <mo>d</mo>
                 <mn>1</mn>
@@ -176,12 +162,10 @@
             </mfrac>
             <mtext> or </mtext>
             <mfrac>
-              <mrow>
-                <msup>
-                  <mo>d</mo>
-                  <mn>2</mn>
-                </msup>
-              </mrow>
+              <msup>
+                <mo>d</mo>
+                <mn>2</mn>
+              </msup>
               <mrow>
                 <mo>d</mo>
                 <mi>

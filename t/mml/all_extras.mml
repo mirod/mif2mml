@@ -1,0 +1,98 @@
+<math displaystyle="true" mathbackground="transparent" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mtable columnalign="left">
+    <mtr>
+      <mtd>
+        <mtext mathvariant="bold">msubsup</mtext>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mtable columnalign="left">
+          <mtr>
+            <mtd>
+              <mtext>msub with nested MSUP</mtext>
+            </mtd>
+            <mtd>
+              <mo>=</mo>
+            </mtd>
+            <mtd>
+              <msubsup>
+                <mi>A</mi>
+                <mtext>sub</mtext>
+                <mtext>SUP</mtext>
+              </msubsup>
+            </mtd>
+          </mtr>
+          <mtr>
+            <mtd>
+              <mtext>msub with nested MSUP (+accent)</mtext>
+            </mtd>
+            <mtd>
+              <mo>=</mo>
+            </mtd>
+            <mtd>
+              <msubsup>
+                <mrow>
+                  <mi>A</mi>
+                  <mo accent="true">′</mo>
+                </mrow>
+                <mtext>sub</mtext>
+                <mtext>SUP</mtext>
+              </msubsup>
+            </mtd>
+          </mtr>
+          <mtr>
+            <mtd>
+              <mtext>MSUP with nested msub</mtext>
+            </mtd>
+            <mtd>
+              <mo>=</mo>
+            </mtd>
+            <mtd>
+              <msubsup>
+                <mtext>A</mtext>
+                <mtext>sub</mtext>
+                <mtext>SUP</mtext>
+              </msubsup>
+            </mtd>
+          </mtr>
+          <mtr>
+            <mtd>
+              <mtext>MSUP with nested msub (sup is accent)</mtext>
+            </mtd>
+            <mtd>
+              <mo>=</mo>
+            </mtd>
+            <mtd>
+              <msub>
+                <mrow>
+                  <mtext>A</mtext>
+                  <mo accent="true">′</mo>
+                </mrow>
+                <mtext>sub</mtext>
+              </msub>
+            </mtd>
+          </mtr>
+          <mtr>
+            <mtd>
+              <mtext>MSUP with nested msub (sup + accent)</mtext>
+            </mtd>
+            <mtd>
+              <mo>=</mo>
+            </mtd>
+            <mtd>
+              <msubsup>
+                <mrow>
+                  <mtext>A</mtext>
+                  <mo accent="true">′</mo>
+                </mrow>
+                <mtext>sub</mtext>
+                <mtext>SUP</mtext>
+              </msubsup>
+            </mtd>
+          </mtr>
+        </mtable>
+      </mtd>
+    </mtr>
+  </mtable>
+</math>

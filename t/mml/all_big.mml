@@ -21,9 +21,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munder>
-                      <mrow>
-                        <mo>∩</mo>
-                      </mrow>
+                      <mo>∩</mo>
                       <mi>y</mi>
                     </munder>
                     <mi>x</mi>
@@ -31,9 +29,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munderover>
-                      <mrow>
-                        <mo>∩</mo>
-                      </mrow>
+                      <mo>∩</mo>
                       <mi>b</mi>
                       <mi>c</mi>
                     </munderover>
@@ -62,9 +58,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∩</mo>
-                        </mrow>
+                        <mo>∩</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -94,9 +88,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munder>
-                      <mrow>
-                        <mo>∪</mo>
-                      </mrow>
+                      <mo>∪</mo>
                       <mi>y</mi>
                     </munder>
                     <mi>x</mi>
@@ -104,9 +96,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munderover>
-                      <mrow>
-                        <mo>∪</mo>
-                      </mrow>
+                      <mo>∪</mo>
                       <mi>b</mi>
                       <mi>c</mi>
                     </munderover>
@@ -135,9 +125,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∪</mo>
-                        </mrow>
+                        <mo>∪</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -167,9 +155,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munder>
-                      <mrow>
-                        <mo>∫</mo>
-                      </mrow>
+                      <mo>∫</mo>
                       <mi>y</mi>
                     </munder>
                     <mi>x</mi>
@@ -177,9 +163,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munderover>
-                      <mrow>
-                        <mo>∫</mo>
-                      </mrow>
+                      <mo>∫</mo>
                       <mi>b</mi>
                       <mi>c</mi>
                     </munderover>
@@ -208,9 +192,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∫</mo>
-                        </mrow>
+                        <mo>∫</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -240,9 +222,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munder>
-                      <mrow>
-                        <mo>∫</mo>
-                      </mrow>
+                      <mo>∫</mo>
                       <mi>y</mi>
                     </munder>
                     <mi>x</mi>
@@ -250,9 +230,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munderover>
-                      <mrow>
-                        <mo>∫</mo>
-                      </mrow>
+                      <mo>∫</mo>
                       <mi>b</mi>
                       <mi>c</mi>
                     </munderover>
@@ -281,9 +259,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∫</mo>
-                        </mrow>
+                        <mo>∫</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -307,9 +283,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∫</mo>
-                        </mrow>
+                        <mo>∫</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -339,9 +313,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munder>
-                      <mrow>
-                        <mo>∏</mo>
-                      </mrow>
+                      <mo>∏</mo>
                       <mi>y</mi>
                     </munder>
                     <mi>x</mi>
@@ -349,9 +321,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munderover>
-                      <mrow>
-                        <mo>∏</mo>
-                      </mrow>
+                      <mo>∏</mo>
                       <mi>b</mi>
                       <mi>c</mi>
                     </munderover>
@@ -380,9 +350,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∏</mo>
-                        </mrow>
+                        <mo>∏</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -406,9 +374,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∏</mo>
-                        </mrow>
+                        <mo>∏</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -438,9 +404,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munder>
-                      <mrow>
-                        <mo>∑</mo>
-                      </mrow>
+                      <mo>∑</mo>
                       <mi>y</mi>
                     </munder>
                     <mi>x</mi>
@@ -448,9 +412,7 @@
                   <mtext> or </mtext>
                   <mrow displaystyle="true">
                     <munderover>
-                      <mrow>
-                        <mo>∑</mo>
-                      </mrow>
+                      <mo>∑</mo>
                       <mi>b</mi>
                       <mi>c</mi>
                     </munderover>
@@ -479,9 +441,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∑</mo>
-                        </mrow>
+                        <mo>∑</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
@@ -505,9 +465,7 @@
                     <mtext> or </mtext>
                     <mrow>
                       <msubsup>
-                        <mrow>
-                          <mo>∑</mo>
-                        </mrow>
+                        <mo>∑</mo>
                         <mi>b</mi>
                         <mi>c</mi>
                       </msubsup>
