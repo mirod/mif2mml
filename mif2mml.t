@@ -21,6 +21,8 @@ my $dmif= "$t/mif";
 my $dmml= "$t/mml";
 my $dgen= "$t/gen";
 
+if( ! -d $dgen) { mkdir $dgen or die "cannot create $dgen directory (to store the mml generated): $!\n"; }
+
 my @mifs= @ARGV ? @ARGV : glob( "$dmif/*.mif");
 
 # remove previous generated mmls, in case there are some left over
@@ -64,8 +66,9 @@ sub test_gen
     my $tmp= tmp( $mif);
     my $gen= gen( $mif);
 
-    if( ! -f $tmp) { warn "  $tmp not generated from $mif\n"; return 0; }
+    if( ! -f $tmp) { warn "  $tmp not generated from $mif\n";      return 0; }
     if( -z $tmp)   { warn "  $tmp generated as empty from $mif\n"; return 0; }
+    if( ! -f $mml) { warn "  new file $mif (no mml for it)\n";     return 0; }
 
     if( $opt{o}) { copy $tmp, $mml; }
 
@@ -85,6 +88,7 @@ sub gen { my( $mif)= @_; return $mif=~ s{$dmif/(.*)\.mif$}{$dgen/$1.mml}r; }
     
 sub slurp
   { my $file= shift;
+    if( ! -f $file) { return ''; } # no file, no problem
     open( my $in, '<', $file) or die "cannot open input file '$file': $!\n";
     local undef $/;
     my $content= <$in>;
