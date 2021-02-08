@@ -37,7 +37,7 @@ my %ent=
       degree    => '°', delta     => 'δ', Delta     => '∆', emptyset  => '∅', epsilon   => 'ε', eta       => 'η',
       gamma     => 'γ', Gamma     => 'Γ', Im        => '𝔍', infty     => '∞', iota      => 'ι', kappa     => 'κ',
       lambda    => 'λ', Lambda    => 'Λ', ldots     => '…', mu        => 'μ', nabla     => '∇', nu        => 'ν',
-      omega     => 'ω', Omega     => 'Ω', phi       => 'φ', Phi       => 'Φ', pi        => 'π', Pi        => 'Π',
+      omega     => 'ω', Omega     => 'Ω', phi       => 'ϕ', Phi       => 'Φ', pi        => 'π', Pi        => 'Π',
       pprime    => '″', prime     => '′', psi       => 'ψ', Psi       => 'Ψ', Re        => 'ℜ', rho       => 'ρ',
       sigma     => 'σ', Sigma     => 'Σ', tau       => 'τ', theta     => 'θ', Theta     => 'Θ', upsilon   => 'υ',
       Upsilon   => 'Υ', varphi    => 'φ', varpi     => 'π', varsigma  => 'ς', vartheta  => 'θ', wp        => '℘',
